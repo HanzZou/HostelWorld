@@ -5,4 +5,14 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    
+    <package name="action" extends="struts-default" namespace="/">
+        <action name="user_*" class="action.LoginAction" method="{1}">
+            <result name="wrong">/view/wrong_account.jsp</result>
+            <result name="MANAGER">/view/manager_home.jsp</result>
+            <result name="GUEST">/view/member_home.jsp</result>
+            <result name="HOTEL">/view/hotel_home.jsp</result>
+        </action>
+    </package>
+    
 </struts>

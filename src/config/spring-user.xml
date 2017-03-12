@@ -3,4 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="loginAction" class="action.LoginAction"/>
+    <bean id="serviceFactory" class="factory.ServiceFactory"/>
+    <bean id="daoFactory" class="factory.DaoFactory"/>
+    <bean id="loginService" class="service.LoginServiceImpl"/>
+    <bean id="userDao" class="dao.UserDaoImpl"/>
 </beans>

@@ -5,5 +5,13 @@ package dao;
  *
  * @author Hanz
  */
-public class UserDaoImpl {
+public class UserDaoImpl implements UserDao {
+
+    private static UserDaoImpl userDao = new UserDaoImpl();
+
+    private UserDaoImpl() {}
+
+    public static UserDaoImpl getInstance() {
+        return userDao;
+    }
 }

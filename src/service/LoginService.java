@@ -6,4 +6,5 @@ package service;
  * @author Hanz
  */
 public interface LoginService {
+
 }
