@@ -6,8 +6,8 @@
 
 <struts>
     
-    <package name="action" extends="struts-default" namespace="/">
-        <action name="user_*" class="action.LoginAction" method="{1}">
+    <package name="default" extends="struts-default">
+        <action name="user_login" class="loginAction">
             <result name="wrong">/view/wrong_account.jsp</result>
             <result name="MANAGER">/view/manager_home.jsp</result>
             <result name="GUEST">/view/member_home.jsp</result>

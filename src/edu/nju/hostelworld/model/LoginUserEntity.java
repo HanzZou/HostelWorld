@@ -1,4 +1,4 @@
-package entity;
+package edu.nju.hostelworld.model;
 
 /**
  * Created by Hanz on 2017/3/12.
