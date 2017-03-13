@@ -20,7 +20,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public CustomerEntity findValidatedCustomer(CustomerEntity customer) {
-        System.out.println(1);
         return userDao.getCustomerByIDAndPassword(customer);
     }
 

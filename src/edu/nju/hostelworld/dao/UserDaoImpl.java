@@ -1,8 +1,11 @@
 package edu.nju.hostelworld.dao;
 
 import edu.nju.hostelworld.model.CustomerEntity;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,8 +14,12 @@ import java.util.List;
  *
  * @author Hanz
  */
+@Transactional
 @Repository("userDao")
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+public class UserDaoImpl implements UserDao {
+
+    private SessionFactory sessionFactory;
+    private Transaction tx;
 
     public UserDaoImpl() {}
 
@@ -21,12 +28,29 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
      * 根据用户名和密码获取用户
      */
     public CustomerEntity getCustomerByIDAndPassword(CustomerEntity customer) {
-        System.out.println(customer.getId());
-        String hql = "from edu.nju.hostelworld.model.CustomerEntity where id = ? and password = ?";
-        List<CustomerEntity> list = (List<CustomerEntity>) this.getHibernateTemplate().findByNamedQuery(hql, customer.getId(), customer.getPassword());
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (Exception e) {
+            session = sessionFactory.openSession();
+        }
+        tx = session.beginTransaction();
+        String hql = "from edu.nju.hostelworld.model.CustomerEntity where id = :id and password = :pwd";
+        List<CustomerEntity> list;
+        try {
+            list = (List<CustomerEntity>) session.createQuery(hql).setParameter("id", customer.getId()).setParameter("pwd", customer.getPassword()).list();
+        } catch (Exception e) {
+            list = (List<CustomerEntity>) session.createQuery(hql).setParameter("id", customer.getId()).setParameter("pwd", customer.getPassword()).list();
+        }
         if (list.size() > 0) {
             return list.get(0);
         }
+        tx.commit();
+        session.close();
         return null;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }
