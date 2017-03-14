@@ -5,7 +5,7 @@ package edu.nju.hostelworld.model;
  *
  * @author Hanz
  */
-public class LoginUserEntity {
+public class LoginUser {
     private String uid;
     private String pwd;
     private Role role;

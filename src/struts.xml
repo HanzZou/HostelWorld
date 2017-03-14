@@ -8,10 +8,14 @@
     
     <package name="default" extends="struts-default">
         <action name="user_login" class="loginAction">
-            <result name="wrong">/view/wrong_account.jsp</result>
-            <result name="MANAGER">/view/manager_home.jsp</result>
-            <result name="GUEST">/view/member_home.jsp</result>
-            <result name="HOTEL">/view/hotel_home.jsp</result>
+            <result name="WRONG">/view/wrong_account.jsp</result>
+            <result name="MANAGER">/view/manager/manager_home.jsp</result>
+            <result name="CUSTOMER">/view/customer/customer_home.jsp</result>
+            <result name="HOTEL">/view/hotel/hotel_home.jsp</result>
+        </action>
+
+        <action name="user_register" class="registerAction">
+            <result name="SUCCESS">/view/register_success.jsp</result>
         </action>
     </package>
     
