@@ -13,7 +13,7 @@ public class HotelEntity {
     private String id;
     private String password;
     private String name;
-    private byte isApproved;
+    private boolean isApproved;
     private String address;
     private String telephone;
     private String cardId;
@@ -50,11 +50,11 @@ public class HotelEntity {
 
     @Basic
     @Column(name = "is_approved", nullable = false)
-    public byte getIsApproved() {
+    public boolean getIsApproved() {
         return isApproved;
     }
 
-    public void setIsApproved(byte isApproved) {
+    public void setIsApproved(boolean isApproved) {
         this.isApproved = isApproved;
     }
 
@@ -111,7 +111,6 @@ public class HotelEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (int) isApproved;
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (cardId != null ? cardId.hashCode() : 0);

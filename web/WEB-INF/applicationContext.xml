@@ -55,19 +55,23 @@
     <!-- action的配置 -->
     <bean id="loginAction" class="edu.nju.hostelworld.action.LoginAction"/>
     <bean id="registerAction" class="edu.nju.hostelworld.action.RegisterAction"/>
+    <bean id="planReleaseAction" class="edu.nju.hostelworld.action.PlanReleaseAction"/>
 
     <!-- serivce的配置 -->
-    <bean id="loginService" class="edu.nju.hostelworld.service.LoginServiceImpl"/>
-    <bean id="registerService" class="edu.nju.hostelworld.service.RegisterServiceImpl"/>
+    <bean id="loginService" class="edu.nju.hostelworld.service.impl.LoginServiceImpl"/>
+    <bean id="registerService" class="edu.nju.hostelworld.service.impl.RegisterServiceImpl"/>
+    <bean id="hotelService" class="edu.nju.hostelworld.service.impl.HotelServiceImpl"/>
 
     <!-- dao的配置 -->
-    <bean id="baseDao" class="edu.nju.hostelworld.dao.BaseDaoImpl"/>
-    <bean id="userDao" class="edu.nju.hostelworld.dao.UserDaoImpl"/>
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="*User" propagation="REQUIRED" />
-            <tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
-        </tx:attributes>
-    </tx:advice>
+    <bean id="baseDao" class="edu.nju.hostelworld.dao.impl.BaseDaoImpl"/>
+    <bean id="userDao" class="edu.nju.hostelworld.dao.impl.UserDaoImpl"/>
+    <bean id="hotelDao" class="edu.nju.hostelworld.dao.impl.HotelDaoImpl"/>
+
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="*User" propagation="REQUIRED" />-->
+            <!--<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
 
 </beans>

@@ -14,8 +14,13 @@
             <result name="HOTEL">/view/hotel/hotel_home.jsp</result>
         </action>
 
-        <action name="user_register" class="registerAction">
-            <result name="SUCCESS">/view/register_success.jsp</result>
+        <action name="register_*" method="{1}Register" class="registerAction">
+            <result name="CUSTOMER">/view/register_success.jsp</result>
+            <result name="HOTEL">/view/wrong_account.jsp</result>
+        </action>
+
+        <action name="hotel_*" method="hotel{1}" class="planReleaseAction">
+            <result name="SUCCESS">/view/hotel/release_success.jsp</result>
         </action>
     </package>
     

@@ -1,12 +1,11 @@
-package edu.nju.hostelworld.service;
+package edu.nju.hostelworld.service.impl;
 
-import edu.nju.hostelworld.dao.UserDao;
+import edu.nju.hostelworld.dao.inf.UserDao;
 import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;
+import edu.nju.hostelworld.service.inf.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
 
 /**
  * Created by Hanz on 2017/3/14.
@@ -21,15 +20,11 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public CustomerEntity registerCustomer(CustomerEntity customer) {
-        customer.setBlockedDay(new Date(0));
-        customer.setIsBlocked(false);
-        customer.setVipGrade(1);
-        customer.setCredits(0);
         return userDao.registerCustomer(customer);
     }
 
     @Override
     public HotelEntity registerHotel(HotelEntity hotel) {
-        return null;
+        return userDao.registerHotel(hotel);
     }
 }

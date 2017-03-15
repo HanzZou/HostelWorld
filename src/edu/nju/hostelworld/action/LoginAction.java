@@ -8,7 +8,7 @@ import edu.nju.hostelworld.model.LoginUser;
 import edu.nju.hostelworld.model.ManagerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import edu.nju.hostelworld.service.LoginService;
+import edu.nju.hostelworld.service.inf.LoginService;
 
 /**
  * Created by Hanz on 2017/3/6.

@@ -1,5 +1,7 @@
-package edu.nju.hostelworld.dao;
+package edu.nju.hostelworld.dao.impl;
 
+import edu.nju.hostelworld.dao.inf.BaseDao;
+import edu.nju.hostelworld.dao.inf.UserDao;
 import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.ManagerEntity;
@@ -55,7 +57,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public HotelEntity registerHotel(HotelEntity hotel) {
-        return null;
+        String number = String.valueOf(baseDao.getTotalCount(HotelEntity.class)+1);
+        for (int i = Integer.valueOf(number); i < 7; i++) {
+            number = "0"+number;
+        }
+        hotel.setId(number);
+        baseDao.save(hotel);
+        return hotel;
     }
 
 }

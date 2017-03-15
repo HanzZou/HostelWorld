@@ -1,4 +1,4 @@
-package edu.nju.hostelworld.dao;
+package edu.nju.hostelworld.dao.inf;
 
 import org.hibernate.Session;
 

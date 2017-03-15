@@ -1,4 +1,4 @@
-package edu.nju.hostelworld.service;
+package edu.nju.hostelworld.service.inf;
 
 import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;

@@ -1,5 +1,6 @@
-package edu.nju.hostelworld.dao;
+package edu.nju.hostelworld.dao.impl;
 
+import edu.nju.hostelworld.dao.inf.BaseDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

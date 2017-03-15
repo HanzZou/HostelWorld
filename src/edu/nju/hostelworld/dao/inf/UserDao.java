@@ -1,4 +1,4 @@
-package edu.nju.hostelworld.dao;
+package edu.nju.hostelworld.dao.inf;
 
 import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;

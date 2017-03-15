@@ -12,5 +12,6 @@
 </head>
 <body>
     注册成功！
+    <button class="btn btn-default" onclick="window.location.href='/view/login.jsp'"></button>
 </body>
 </html>

@@ -1,9 +1,10 @@
-package edu.nju.hostelworld.service;
+package edu.nju.hostelworld.service.impl;
 
-import edu.nju.hostelworld.dao.UserDao;
+import edu.nju.hostelworld.dao.inf.UserDao;
 import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.ManagerEntity;
+import edu.nju.hostelworld.service.inf.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
