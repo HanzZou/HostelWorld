@@ -20,9 +20,6 @@
         <property name="address">
             <column name="address" sql-type="varchar(255)" not-null="true"/>
         </property>
-        <property name="avatar">
-            <column name="avatar" sql-type="blob" not-null="true"/>
-        </property>
         <property name="cardId">
             <column name="card_id" sql-type="char(19)" length="19"/>
         </property>

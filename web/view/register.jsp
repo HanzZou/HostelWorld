@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label>密码:</label>
-            <input type="password" class="form-control" name="pwd">
+            <input type="password" class="form-control" name="password">
         </div>
         <div class="form-group">
             <label>手机号码:</label>

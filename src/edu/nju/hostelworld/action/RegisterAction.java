@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.RegisterUser;
 import edu.nju.hostelworld.service.RegisterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RegisterAction extends ActionSupport implements ModelDriven<RegisterUser> {
 
+    @Autowired
     private RegisterService registerService;
 
     private RegisterUser user = new RegisterUser();
@@ -35,7 +37,4 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
         return null;
     }
 
-    public void setRegisterService(edu.nju.hostelworld.service.RegisterServiceImpl registerService) {
-        this.registerService = registerService;
-    }
 }

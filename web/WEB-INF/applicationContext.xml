@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+      http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -30,6 +31,8 @@
         <property name="annotatedClasses">
             <list>
                 <value>edu.nju.hostelworld.model.CustomerEntity</value>
+                <value>edu.nju.hostelworld.model.HotelEntity</value>
+                <value>edu.nju.hostelworld.model.ManagerEntity</value>
             </list>
         </property>
         <property name="mappingLocations">
@@ -41,25 +44,30 @@
         </property>
     </bean>
 
+    <!--自动装配-->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+
     <!-- action的配置 -->
-    <bean id="loginAction" class="edu.nju.hostelworld.action.LoginAction">
-        <property name="loginService" ref="loginService"/>
-    </bean>
-    <bean id="registerAction" class="edu.nju.hostelworld.action.RegisterAction">
-        <property name="registerService" ref="registerService"/>
-    </bean>
+    <bean id="loginAction" class="edu.nju.hostelworld.action.LoginAction"/>
+    <bean id="registerAction" class="edu.nju.hostelworld.action.RegisterAction"/>
 
     <!-- serivce的配置 -->
-    <bean id="loginService" class="edu.nju.hostelworld.service.LoginServiceImpl">
-        <property name="userDao" ref="userDao"/>
-    </bean>
-    <bean id="registerService" class="edu.nju.hostelworld.service.RegisterServiceImpl">
-        <property name="userDao" ref="userDao"/>
-    </bean>
+    <bean id="loginService" class="edu.nju.hostelworld.service.LoginServiceImpl"/>
+    <bean id="registerService" class="edu.nju.hostelworld.service.RegisterServiceImpl"/>
 
     <!-- dao的配置 -->
-    <bean id="userDao" class="edu.nju.hostelworld.dao.UserDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <bean id="baseDao" class="edu.nju.hostelworld.dao.BaseDaoImpl"/>
+    <bean id="userDao" class="edu.nju.hostelworld.dao.UserDaoImpl"/>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*User" propagation="REQUIRED" />
+            <tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
 
 </beans>

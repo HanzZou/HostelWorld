@@ -16,26 +16,39 @@ import org.springframework.stereotype.Service;
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
+    @Autowired
     private UserDao userDao;
 
     public LoginServiceImpl() {}
 
     @Override
     public CustomerEntity findValidatedCustomer(CustomerEntity customer) {
-        return userDao.getCustomerByIDAndPassword(customer);
+        CustomerEntity getCustomer = userDao.getCustomerByID(customer.getId());
+        if (getCustomer == null)
+            return null;
+        if (!getCustomer.getPassword().equals(customer.getPassword()))
+            return null;
+        return getCustomer;
     }
 
     @Override
     public ManagerEntity findValidatedManager(ManagerEntity manager) {
-        return userDao.getManagerByIDAndPassword(manager);
+        ManagerEntity getManager = userDao.getManagerByID(manager.getId());
+        if (getManager == null)
+            return null;
+        if (!getManager.getPassword().equals(manager.getPassword()))
+            return null;
+        return getManager;
     }
 
     @Override
     public HotelEntity findValidatedHotel(HotelEntity hotel) {
-        return userDao.getHotelByIDAndPassword(hotel);
+        HotelEntity getHotel = userDao.getHotelByID(hotel.getId());
+        if (getHotel == null)
+            return null;
+        if (!getHotel.getPassword().equals(hotel.getPassword()))
+            return null;
+        return getHotel;
     }
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
 }

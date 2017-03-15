@@ -17,9 +17,8 @@ public class CustomerEntity {
     private String name;
     private String telephone;
     private String address;
-    private byte[] avatar;
     private String cardId;
-    private Byte isBlocked;
+    private boolean isBlocked;
     private Date blockedDay;
     private int credits;
     private int vipGrade;
@@ -75,16 +74,6 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "avatar", nullable = true)
-    public byte[] getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
-    }
-
-    @Basic
     @Column(name = "card_id", nullable = false, length = 19)
     public String getCardId() {
         return cardId;
@@ -96,11 +85,11 @@ public class CustomerEntity {
 
     @Basic
     @Column(name = "is_blocked", nullable = true)
-    public Byte getIsBlocked() {
+    public boolean getIsBlocked() {
         return isBlocked;
     }
 
-    public void setIsBlocked(Byte isBlocked) {
+    public void setIsBlocked(boolean isBlocked) {
         this.isBlocked = isBlocked;
     }
 
@@ -148,9 +137,7 @@ public class CustomerEntity {
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (telephone != null ? !telephone.equals(that.telephone) : that.telephone != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (!Arrays.equals(avatar, that.avatar)) return false;
         if (cardId != null ? !cardId.equals(that.cardId) : that.cardId != null) return false;
-        if (isBlocked != null ? !isBlocked.equals(that.isBlocked) : that.isBlocked != null) return false;
         if (blockedDay != null ? !blockedDay.equals(that.blockedDay) : that.blockedDay != null) return false;
 
         return true;
@@ -163,9 +150,7 @@ public class CustomerEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(avatar);
         result = 31 * result + (cardId != null ? cardId.hashCode() : 0);
-        result = 31 * result + (isBlocked != null ? isBlocked.hashCode() : 0);
         result = 31 * result + (blockedDay != null ? blockedDay.hashCode() : 0);
         result = 31 * result + credits;
         result = 31 * result + vipGrade;

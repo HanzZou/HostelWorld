@@ -10,15 +10,14 @@ import edu.nju.hostelworld.model.ManagerEntity;
  * @author Hanz
  */
 public interface UserDao {
-    CustomerEntity getCustomerByIDAndPassword(CustomerEntity customer);
+    CustomerEntity getCustomerByID(String id);
 
-    ManagerEntity getManagerByIDAndPassword(ManagerEntity manager);
+    ManagerEntity getManagerByID(String id);
 
-    HotelEntity getHotelByIDAndPassword(HotelEntity hotel);
+    HotelEntity getHotelByID(String id);
 
     CustomerEntity registerCustomer(CustomerEntity customer);
 
-    HotelEntity hotelCustomer(HotelEntity hotel);
+    HotelEntity registerHotel(HotelEntity hotel);
 
-    String getCustomerNumber();
 }

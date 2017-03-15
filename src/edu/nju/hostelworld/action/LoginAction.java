@@ -6,6 +6,7 @@ import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.LoginUser;
 import edu.nju.hostelworld.model.ManagerEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import edu.nju.hostelworld.service.LoginService;
 
@@ -17,6 +18,7 @@ import edu.nju.hostelworld.service.LoginService;
 @Controller
 public class LoginAction extends ActionSupport implements ModelDriven<LoginUser> {
 
+    @Autowired
     private LoginService loginService;
 
     private LoginUser user = new LoginUser();
@@ -68,7 +70,4 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         return "CUSTOMER";
     }
 
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
 }
