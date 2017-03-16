@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public CustomerEntity registerCustomer(CustomerEntity customer) {
         String number = String.valueOf(baseDao.getTotalCount(CustomerEntity.class)+1);
-        for (int i = Integer.valueOf(number); i < 7; i++) {
+        for (int i = number.length(); i < 7; i++) {
             number = "0"+number;
         }
         customer.setId(number);
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public HotelEntity registerHotel(HotelEntity hotel) {
         String number = String.valueOf(baseDao.getTotalCount(HotelEntity.class)+1);
-        for (int i = Integer.valueOf(number); i < 7; i++) {
+        for (int i = number.length(); i < 7; i++) {
             number = "0"+number;
         }
         hotel.setId(number);

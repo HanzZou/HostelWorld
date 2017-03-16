@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.nju.hostelworld.model.PlanEntity" table="plan" schema="hostelworld">
+        <id name="id">
+            <column name="id" sql-type="char(10)" length="10"/>
+        </id>
+        <property name="hotelId">
+            <column name="hotel_id" sql-type="char(7)" length="7"/>
+        </property>
+        <property name="room">
+            <column name="room" sql-type="char(4)" length="4"/>
+        </property>
+        <property name="startDay">
+            <column name="start_day" sql-type="date"/>
+        </property>
+        <property name="endDay">
+            <column name="end_day" sql-type="date"/>
+        </property>
+        <property name="price">
+            <column name="price" sql-type="int(11)"/>
+        </property>
+        <property name="isReserved">
+            <column name="is_reserved" sql-type="tinyint(1)"/>
+        </property>
+    </class>
+</hibernate-mapping>

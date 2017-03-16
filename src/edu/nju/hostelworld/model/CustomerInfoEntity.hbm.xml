@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.nju.hostelworld.model.CustomerInfoEntity" table="customer_info" schema="hostelworld">
+        <id name="id">
+            <column name="id" sql-type="char(15)" length="15"/>
+        </id>
+        <property name="memberId">
+            <column name="member_id" sql-type="char(7)" length="7"/>
+        </property>
+        <property name="name">
+            <column name="name" sql-type="varchar(255)"/>
+        </property>
+        <property name="telephone">
+            <column name="telephone" sql-type="char(11)" length="11" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="cardId">
+            <column name="card_id" sql-type="char(19)" length="19"/>
+        </property>
+        <property name="isAccepted">
+            <column name="is_accepted" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

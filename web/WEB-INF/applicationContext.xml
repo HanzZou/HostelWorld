@@ -33,6 +33,12 @@
                 <value>edu.nju.hostelworld.model.CustomerEntity</value>
                 <value>edu.nju.hostelworld.model.HotelEntity</value>
                 <value>edu.nju.hostelworld.model.ManagerEntity</value>
+                <value>edu.nju.hostelworld.model.PlanEntity</value>
+                <value>edu.nju.hostelworld.model.CardEntity</value>
+                <value>edu.nju.hostelworld.model.CheckinEntity</value>
+                <value>edu.nju.hostelworld.model.CustomerInfoEntity</value>
+                <value>edu.nju.hostelworld.model.HotelInfoEntity</value>
+                <value>edu.nju.hostelworld.model.ReservationEntity</value>
             </list>
         </property>
         <property name="mappingLocations">
@@ -40,6 +46,12 @@
                 <value>classpath:edu/nju/hostelworld/model/CustomerEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/ManagerEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/HotelEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/PlanEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/CardEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/CheckinEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/CustomerInfoEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/HotelInfoEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/ReservationEntity.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -55,7 +67,8 @@
     <!-- action的配置 -->
     <bean id="loginAction" class="edu.nju.hostelworld.action.LoginAction"/>
     <bean id="registerAction" class="edu.nju.hostelworld.action.RegisterAction"/>
-    <bean id="planReleaseAction" class="edu.nju.hostelworld.action.PlanReleaseAction"/>
+    <bean id="releasePlanAction" class="edu.nju.hostelworld.action.ReleasePlanAction"/>
+    <bean id="modifyInfoAction" class="edu.nju.hostelworld.action.ModifyInfoAction"/>
 
     <!-- serivce的配置 -->
     <bean id="loginService" class="edu.nju.hostelworld.service.impl.LoginServiceImpl"/>

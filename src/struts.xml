@@ -19,8 +19,12 @@
             <result name="HOTEL">/view/wrong_account.jsp</result>
         </action>
 
-        <action name="hotel_*" method="hotel{1}" class="planReleaseAction">
+        <action name="release_plan" class="releasePlanAction">
             <result name="SUCCESS">/view/hotel/release_success.jsp</result>
+        </action>
+
+        <action name="modify_info" class="modifyInfoAction">
+
         </action>
     </package>
     

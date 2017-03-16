@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.nju.hostelworld.model.CheckinEntity" table="checkin" schema="hostelworld">
+        <id name="id">
+            <column name="id" sql-type="char(15)" length="15"/>
+        </id>
+        <property name="hotelId">
+            <column name="hotel_id" sql-type="char(7)" length="7"/>
+        </property>
+        <property name="member">
+            <column name="member" sql-type="char(7)" length="7"/>
+        </property>
+        <property name="room">
+            <column name="room" sql-type="char(4)" length="4"/>
+        </property>
+        <property name="date">
+            <column name="date" sql-type="date"/>
+        </property>
+        <property name="people">
+            <column name="people" sql-type="int(11)"/>
+        </property>
+        <property name="leaveDate">
+            <column name="leave_date" sql-type="date" not-null="true"/>
+        </property>
+        <property name="payCard">
+            <column name="pay_card" sql-type="tinyint(1)"/>
+        </property>
+    </class>
+</hibernate-mapping>

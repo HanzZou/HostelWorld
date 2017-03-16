@@ -57,12 +57,12 @@
                     <input type="password" class="form-control" name="password">
                 </div>
                 <div class="form-group">
-                    <label>客栈联系号码:</label>
-                    <input class="form-control" name="telephone">
-                </div>
-                <div class="form-group">
                     <label>客栈地址:</label>
                     <input class="form-control" name="address">
+                </div>
+                <div class="form-group">
+                    <label>客栈联系号码:</label>
+                    <input class="form-control" name="telephone">
                 </div>
                 <div class="form-group">
                     <label>银行卡号:</label>

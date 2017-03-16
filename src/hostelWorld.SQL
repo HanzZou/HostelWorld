@@ -5,9 +5,9 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id` char(7) PRIMARY KEY ,
   `password` VARCHAR(255) NOT NULL ,
-  `name` VARCHAR(255) ,
-  `telephone` CHAR(11) ,
-  `address` VARCHAR(255) ,
+  `name` VARCHAR(255) NOT NULL ,
+  `telephone` CHAR(11) NOT NULL ,
+  `address` VARCHAR(255) NOT NULL ,
   `card_id` char(19) NOT NULL ,
   `is_blocked` BOOLEAN ,
   `blocked_day` DATE ,
@@ -50,3 +50,56 @@ CREATE TABLE `plan` (
   `is_reserved` BOOLEAN NOT NULL DEFAULT FALSE
 );
 INSERT INTO plan VALUES ("0000000001","0000001","815","2017-3-15","2017-3-16","100",FALSE );
+
+# 预订表
+DROP TABLE IF EXISTS `reservation`;
+CREATE TABLE `reservation` (
+  `id` CHAR(10) PRIMARY KEY ,
+  `member_id` CHAR(7) ,
+  `plan_id` CHAR(10) ,
+  `is_canceled` BOOLEAN
+);
+
+# 入住表
+DROP TABLE IF EXISTS `checkin`;
+CREATE TABLE `checkin` (
+  `id` CHAR(15) PRIMARY KEY ,
+  `hotel_id` CHAR(7) NOT NULL ,
+  `member` CHAR(7) NOT NULL ,
+  `room` CHAR(4) NOT NULL ,
+  `date` DATE NOT NULL ,
+  `people` INT NOT NULL ,
+  `leave_date` DATE ,
+  `pay_card` BOOLEAN NOT NULL
+);
+
+# 银行卡表
+DROP TABLE IF EXISTS `card`;
+CREATE TABLE `card` (
+  `id` CHAR(19) PRIMARY KEY ,
+  `balance` INT
+);
+
+# 用户信息修改表
+DROP TABLE IF EXISTS `customer_info`;
+CREATE TABLE `customer_info` (
+  `id` CHAR(15) PRIMARY KEY ,
+  `member_id` CHAR(7) NOT NULL ,
+  `name` VARCHAR(255) NOT NULL ,
+  `telephone` CHAR(11) ,
+  `address` VARCHAR(255) ,
+  `card_id` CHAR(19) NOT NULL ,
+  `is_accepted` BOOLEAN
+);
+
+# 客栈信息修改表
+DROP TABLE IF EXISTS `hotel_info`;
+CREATE TABLE `hotel_info` (
+  `id` char(15) PRIMARY KEY ,
+  `hotel_id` CHAR(7) NOT NULL ,
+  `address` VARCHAR(255) NOT NULL ,
+  `telephone` CHAR(13) NOT NULL ,
+  `name` VARCHAR(255) NOT NULL ,
+  `card_id` CHAR(19) NOT NULL ,
+  `is_accepted` BOOLEAN
+);
