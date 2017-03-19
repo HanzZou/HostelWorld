@@ -22,7 +22,7 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="customer">
-            <s:form action="register_user" method="POST">
+            <s:form action="register_customer" method="POST">
                 <div class="form-group">
                     <label>姓名:</label>
                     <input class="form-control" name="name">

@@ -2,6 +2,7 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.HotelDao;
+import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,5 +25,11 @@ public class HotelDaoImpl implements HotelDao {
         plan.setId(number);
         baseDao.save(plan);
         return plan;
+    }
+
+    @Override
+    public HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity) {
+        baseDao.save(hotelInfoEntity);
+        return hotelInfoEntity;
     }
 }

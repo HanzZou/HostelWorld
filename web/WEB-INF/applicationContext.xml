@@ -66,9 +66,12 @@
 
     <!-- action的配置 -->
     <bean id="loginAction" class="edu.nju.hostelworld.action.LoginAction"/>
+    <bean id="logoutAction" class="edu.nju.hostelworld.action.LogoutAction"/>
     <bean id="registerAction" class="edu.nju.hostelworld.action.RegisterAction"/>
     <bean id="releasePlanAction" class="edu.nju.hostelworld.action.ReleasePlanAction"/>
-    <bean id="modifyInfoAction" class="edu.nju.hostelworld.action.ModifyInfoAction"/>
+    <bean id="modifyCustomerInfoAction" class="edu.nju.hostelworld.action.ModifyCustomerInfoAction"/>
+    <bean id="modifyHotelInfoAction" class="edu.nju.hostelworld.action.ModifyHotelInfoAction"/>
+    <bean id="approveHotelToOpenAction" class="edu.nju.hostelworld.action.ApproveHotelToOpenAction"/>
 
     <!-- serivce的配置 -->
     <bean id="loginService" class="edu.nju.hostelworld.service.impl.LoginServiceImpl"/>

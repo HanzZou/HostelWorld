@@ -1,5 +1,6 @@
 package edu.nju.hostelworld.dao.inf;
 
+import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 
 /**
@@ -8,5 +9,9 @@ import edu.nju.hostelworld.model.PlanEntity;
  * @author Hanz
  */
 public interface HotelDao {
+
     PlanEntity releasePlan(PlanEntity plan);
+
+    HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity);
+
 }

@@ -6,6 +6,7 @@ import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.RegisterUser;
 import edu.nju.hostelworld.service.inf.RegisterService;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -41,7 +42,9 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
         customer.setVipGrade(1);
         customer.setCredits(0);
         registerService.registerCustomer(customer);
-        return "CUSTOMER";
+        ServletActionContext.getRequest().setAttribute("id", customer.getId());
+        ServletActionContext.getRequest().setAttribute("name", customer.getName());
+        return "success";
     }
 
     public String hotelRegister() {
@@ -53,7 +56,9 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
         hotel.setIsApproved(false);
         hotel.setName(user.getName());
         registerService.registerHotel(hotel);
-        return "HOTEL";
+        ServletActionContext.getRequest().setAttribute("id", hotel.getId());
+        ServletActionContext.getRequest().setAttribute("name", hotel.getName());
+        return "success";
     }
 
 }

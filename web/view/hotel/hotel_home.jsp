@@ -14,7 +14,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body class="col-md-4 center">
+<body>
+<div class="col-md-8 center">
+    <div>
+        欢迎使用，${sessionScope.get("hotelName")}
+        <s:form action="user_logout" method="POST">
+            <input class="btn btn-default" type="submit" value="注销">
+        </s:form>
+    </div>
+    <br/>
     <ul class="nav nav-tabs" id="hotelContent">
         <li class="active"><a href="#registration" data-toggle="tab">入/离店登记</a></li>
         <li><a href="#plan" data-toggle="tab">计划发布</a></li>
@@ -52,7 +60,7 @@
 
         </div>
         <div class="tab-pane fade" id="information">
-            <s:form action="modify_info" method="post">
+            <s:form action="modify_customer_info" method="post">
                 <div class="form-group">
                     <label>客栈名:</label>
                     <input class="form-control" name="name">
@@ -80,5 +88,7 @@
             });
         });
     </script>
+</div>
+
 </body>
 </html>

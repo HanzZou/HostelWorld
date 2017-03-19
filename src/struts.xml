@@ -12,19 +12,27 @@
             <result name="MANAGER">/view/manager/manager_home.jsp</result>
             <result name="CUSTOMER">/view/customer/customer_home.jsp</result>
             <result name="HOTEL">/view/hotel/hotel_home.jsp</result>
+            <result name="UNAPPROVED">/view/hotel/unapproved.jsp</result>
+        </action>
+
+        <action name="user_logout" class="logoutAction">
+            <result name="success">/view/login.jsp</result>
         </action>
 
         <action name="register_*" method="{1}Register" class="registerAction">
-            <result name="CUSTOMER">/view/register_success.jsp</result>
-            <result name="HOTEL">/view/wrong_account.jsp</result>
+            <result>/view/register_success.jsp</result>
         </action>
 
         <action name="release_plan" class="releasePlanAction">
             <result name="SUCCESS">/view/hotel/release_success.jsp</result>
         </action>
 
-        <action name="modify_info" class="modifyInfoAction">
+        <action name="modify_customer_info" class="modifyCustomerInfoAction">
+            <result name="success">/view/hotel/modify_hotel_success.jsp</result>
+        </action>
 
+        <action name="modify_hotel_info" class="modifyHotelInfoAction">
+            <result name="success">/view/customer/modify_customer_home.jsp</result>
         </action>
     </package>
     
