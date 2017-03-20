@@ -16,8 +16,8 @@ public class ApproveHotelToOpenAction extends ActionSupport {
 
     @Autowired
     private ManagerService managerService;
-    @Autowired
-    private HotelService hotelService;
+
+
 
 
 

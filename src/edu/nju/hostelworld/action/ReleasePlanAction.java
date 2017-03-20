@@ -29,7 +29,7 @@ public class ReleasePlanAction extends ActionSupport implements ModelDriven<Plan
     }
 
     public String execute() {
-        plan.setIsReserved(false);
+        plan.setIsReserved((byte) '0');
         // 获取酒店编号
         Map session = ActionContext.getContext().getSession();
         plan.setHotelId((String) session.get("hotelId"));

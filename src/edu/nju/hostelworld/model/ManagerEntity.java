@@ -3,12 +3,12 @@ package edu.nju.hostelworld.model;
 import javax.persistence.*;
 
 /**
- * Created by Hanz on 2017/3/14.
+ * Created by Hanz on 2017/3/20.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "manager", schema = "hostelworld")
+@Table(name = "manager", schema = "hostelworld", catalog = "")
 public class ManagerEntity {
     private String id;
     private String password;

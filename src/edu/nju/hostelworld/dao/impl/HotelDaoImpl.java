@@ -2,10 +2,13 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.HotelDao;
+import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Created by Hanz on 2017/3/15.
@@ -33,5 +36,10 @@ public class HotelDaoImpl implements HotelDao {
     public HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity) {
         baseDao.save(hotelInfoEntity);
         return hotelInfoEntity;
+    }
+
+    @Override
+    public List<HotelEntity> getHotelList() {
+        return baseDao.getAllList(HotelEntity.class);
     }
 }

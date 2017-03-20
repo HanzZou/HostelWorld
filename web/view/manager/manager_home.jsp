@@ -43,7 +43,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <s:iterator value="#request.hotelToOpen" var="hotel">
+                        <tr>
+                            <th><s:property value="#hotel.id"/></th>
+                            <th><s:property value="#hotel.name"/></th>
+                            <th><s:property value="#hotel.address"/></th>
+                            <th><s:property value="#hotel.telephone"/></th>
+                            <th><s:property value="#hotel.cardId"/></th>
+                            <th></th>
+                        </tr>
+                    </s:iterator>
                 </tbody>
             </table>
             <br/>
@@ -60,7 +69,16 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <s:iterator value="#request.hotelInfo" var="hotel">
+                        <tr>
+                            <th><s:property value="#hotel.id"/></th>
+                            <th><s:property value="#hotel.name"/></th>
+                            <th><s:property value="#hotel.address"/></th>
+                            <th><s:property value="#hotel.telephone"/></th>
+                            <th><s:property value="#hotel.cardId"/></th>
+                            <th></th>
+                        </tr>
+                    </s:iterator>
                 </tbody>
             </table>
             <br/>
@@ -73,11 +91,22 @@
                         <th>手机号码</th>
                         <th>地址</th>
                         <th>手机号</th>
+                        <th>银行卡号</th>
                         <th>批准</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <s:iterator value="#request.customerInfo" var="customer">
+                        <tr>
+                            <th><s:property value="#customer.id"/></th>
+                            <th><s:property value="#customer.name"/></th>
+                            <th><s:property value="#customer.telephone"/></th>
+                            <th><s:property value="#customer.address"/></th>
+                            <th><s:property value="#customer.telephone"/></th>
+                            <th><s:property value="#customer.cardId"/></th>
+                            <th></th>
+                        </tr>
+                    </s:iterator>
                 </tbody>
             </table>
         </div>

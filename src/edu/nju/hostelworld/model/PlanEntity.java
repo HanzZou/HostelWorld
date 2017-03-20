@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Hanz on 2017/3/16.
+ * Created by Hanz on 2017/3/20.
  *
  * @author Hanz
  */
@@ -17,7 +17,7 @@ public class PlanEntity {
     private Date startDay;
     private Date endDay;
     private int price;
-    private boolean isReserved;
+    private byte isReserved;
 
     @Id
     @Column(name = "id", nullable = false, length = 10)
@@ -81,11 +81,11 @@ public class PlanEntity {
 
     @Basic
     @Column(name = "is_reserved", nullable = false)
-    public boolean getIsReserved() {
+    public byte getIsReserved() {
         return isReserved;
     }
 
-    public void setIsReserved(boolean isReserved) {
+    public void setIsReserved(byte isReserved) {
         this.isReserved = isReserved;
     }
 
@@ -115,6 +115,7 @@ public class PlanEntity {
         result = 31 * result + (startDay != null ? startDay.hashCode() : 0);
         result = 31 * result + (endDay != null ? endDay.hashCode() : 0);
         result = 31 * result + price;
+        result = 31 * result + (int) isReserved;
         return result;
     }
 }

@@ -3,17 +3,17 @@ package edu.nju.hostelworld.model;
 import javax.persistence.*;
 
 /**
- * Created by Hanz on 2017/3/14.
+ * Created by Hanz on 2017/3/20.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "hotel", schema = "hostelworld")
+@Table(name = "hotel", schema = "hostelworld", catalog = "")
 public class HotelEntity {
     private String id;
     private String password;
     private String name;
-    private boolean isApproved;
+    private byte isApproved;
     private String address;
     private String telephone;
     private String cardId;
@@ -50,11 +50,11 @@ public class HotelEntity {
 
     @Basic
     @Column(name = "is_approved", nullable = false)
-    public boolean getIsApproved() {
+    public byte getIsApproved() {
         return isApproved;
     }
 
-    public void setIsApproved(boolean isApproved) {
+    public void setIsApproved(byte isApproved) {
         this.isApproved = isApproved;
     }
 
@@ -111,6 +111,7 @@ public class HotelEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (int) isApproved;
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (cardId != null ? cardId.hashCode() : 0);

@@ -12,7 +12,6 @@
             <result name="MANAGER">/view/manager/manager_home.jsp</result>
             <result name="CUSTOMER">/view/customer/customer_home.jsp</result>
             <result name="HOTEL">/view/hotel/hotel_home.jsp</result>
-            <result name="UNAPPROVED">/view/hotel/unapproved.jsp</result>
         </action>
 
         <action name="user_logout" class="logoutAction">

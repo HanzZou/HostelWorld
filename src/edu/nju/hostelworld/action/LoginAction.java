@@ -7,10 +7,13 @@ import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.LoginUser;
 import edu.nju.hostelworld.model.ManagerEntity;
+import edu.nju.hostelworld.service.inf.HotelService;
+import edu.nju.hostelworld.service.inf.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import edu.nju.hostelworld.service.inf.LoginService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +26,10 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
 
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private HotelService hotelService;
+    @Autowired
+    private ManagerService managerService;
 
     private LoginUser user = new LoginUser();
 
@@ -53,6 +60,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         session.put("logined", true);
         session.put("managerId", manager.getId());
         session.put("managerName", manager.getName());
+
+        Map request = (Map) ActionContext.getContext().get("request");
+        request.put("hotelToOpen", managerService.getHotelToOpen());
+        request.put("hotelInfo", managerService.getHotelInfo());
+        request.put("customerInfo", managerService.getCustomerInfo());
         return "MANAGER";
     }
 
@@ -65,14 +77,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
             return "WRONG";
         }
 
-        if (!hotel.getIsApproved()) {
-            return "UNAPPROVED";
-        }
-
         Map session = ActionContext.getContext().getSession();
         session.put("logined", true);
         session.put("hotelId", hotel.getId());
         session.put("hotelName", hotel.getName());
+
         return "HOTEL";
     }
 

@@ -53,7 +53,7 @@ public class BaseDaoImpl implements BaseDao {
 
     @Override
     public List getAllList(Class c) {
-        String hql = "from" + c.getName();
+        String hql = "from " + c.getName();
         Session session = getSession();
         return session.createQuery(hql).list();
     }

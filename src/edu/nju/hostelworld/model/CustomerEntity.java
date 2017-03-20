@@ -2,15 +2,14 @@ package edu.nju.hostelworld.model;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Arrays;
 
 /**
- * Created by Hanz on 2017/3/13.
+ * Created by Hanz on 2017/3/20.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "customer", schema = "hostelworld")
+@Table(name = "customer", schema = "hostelworld", catalog = "")
 public class CustomerEntity {
     private String id;
     private String password;
@@ -18,7 +17,7 @@ public class CustomerEntity {
     private String telephone;
     private String address;
     private String cardId;
-    private boolean isBlocked;
+    private Byte isBlocked;
     private Date blockedDay;
     private int credits;
     private int vipGrade;
@@ -85,11 +84,11 @@ public class CustomerEntity {
 
     @Basic
     @Column(name = "is_blocked", nullable = true)
-    public boolean getIsBlocked() {
+    public Byte getIsBlocked() {
         return isBlocked;
     }
 
-    public void setIsBlocked(boolean isBlocked) {
+    public void setIsBlocked(Byte isBlocked) {
         this.isBlocked = isBlocked;
     }
 
@@ -138,6 +137,7 @@ public class CustomerEntity {
         if (telephone != null ? !telephone.equals(that.telephone) : that.telephone != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (cardId != null ? !cardId.equals(that.cardId) : that.cardId != null) return false;
+        if (isBlocked != null ? !isBlocked.equals(that.isBlocked) : that.isBlocked != null) return false;
         if (blockedDay != null ? !blockedDay.equals(that.blockedDay) : that.blockedDay != null) return false;
 
         return true;
@@ -151,6 +151,7 @@ public class CustomerEntity {
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (cardId != null ? cardId.hashCode() : 0);
+        result = 31 * result + (isBlocked != null ? isBlocked.hashCode() : 0);
         result = 31 * result + (blockedDay != null ? blockedDay.hashCode() : 0);
         result = 31 * result + credits;
         result = 31 * result + vipGrade;

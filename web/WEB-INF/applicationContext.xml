@@ -52,6 +52,11 @@
                 <value>classpath:edu/nju/hostelworld/model/CustomerInfoEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/HotelInfoEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/ReservationEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/CardEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/CustomerEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/HotelEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/ManagerEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/ReservationEntity.hbm.xml</value>
             </list>
         </property>
     </bean>

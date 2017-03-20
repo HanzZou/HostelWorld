@@ -1,7 +1,10 @@
 package edu.nju.hostelworld.dao.inf;
 
+import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
+
+import java.util.List;
 
 /**
  * Created by Hanz on 2017/3/15.
@@ -14,4 +17,5 @@ public interface HotelDao {
 
     HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity);
 
+    List<HotelEntity> getHotelList();
 }

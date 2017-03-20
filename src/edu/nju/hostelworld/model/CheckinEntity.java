@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Hanz on 2017/3/16.
+ * Created by Hanz on 2017/3/20.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "checkin", schema = "hostelworld")
+@Table(name = "checkin", schema = "hostelworld", catalog = "")
 public class CheckinEntity {
     private String id;
     private String hotelId;

@@ -3,12 +3,12 @@ package edu.nju.hostelworld.model;
 import javax.persistence.*;
 
 /**
- * Created by Hanz on 2017/3/16.
+ * Created by Hanz on 2017/3/20.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "customer_info", schema = "hostelworld")
+@Table(name = "customer_info", schema = "hostelworld", catalog = "")
 public class CustomerInfoEntity {
     private String id;
     private String memberId;
