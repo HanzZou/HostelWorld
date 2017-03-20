@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author Hanz
  */
-@Controller
+@Controller("releasePlanAction")
 public class ReleasePlanAction extends ActionSupport implements ModelDriven<PlanEntity> {
 
     @Autowired

@@ -4,6 +4,7 @@ import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.service.inf.ManagerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @author Hanz
  */
+@Service("managerService")
 public class ManagerServiceImpl implements ManagerService {
 
     @Override

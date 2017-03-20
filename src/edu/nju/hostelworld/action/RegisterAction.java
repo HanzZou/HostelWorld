@@ -17,7 +17,7 @@ import java.sql.Date;
  *
  * @author Hanz
  */
-@Controller
+@Controller("registerAction")
 public class RegisterAction extends ActionSupport implements ModelDriven<RegisterUser> {
 
     @Autowired

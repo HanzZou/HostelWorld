@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author Hanz
  */
-@Controller
+@Controller("loginAction")
 public class LoginAction extends ActionSupport implements ModelDriven<LoginUser> {
 
     @Autowired

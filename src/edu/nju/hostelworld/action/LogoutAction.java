@@ -2,6 +2,7 @@ package edu.nju.hostelworld.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.stereotype.Controller;
 
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import java.util.Map;
  *
  * @author Hanz
  */
+@Controller("logoutAction")
 public class LogoutAction extends ActionSupport {
 
     public String execute() {

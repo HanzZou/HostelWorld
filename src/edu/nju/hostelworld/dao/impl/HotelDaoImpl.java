@@ -5,12 +5,14 @@ import edu.nju.hostelworld.dao.inf.HotelDao;
 import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by Hanz on 2017/3/15.
  *
  * @author Hanz
  */
+@Repository("hotelDao")
 public class HotelDaoImpl implements HotelDao {
 
     @Autowired

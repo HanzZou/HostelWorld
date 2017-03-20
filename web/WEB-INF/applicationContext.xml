@@ -63,31 +63,12 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-
-    <!-- action的配置 -->
-    <bean id="loginAction" class="edu.nju.hostelworld.action.LoginAction"/>
-    <bean id="logoutAction" class="edu.nju.hostelworld.action.LogoutAction"/>
-    <bean id="registerAction" class="edu.nju.hostelworld.action.RegisterAction"/>
-    <bean id="releasePlanAction" class="edu.nju.hostelworld.action.ReleasePlanAction"/>
-    <bean id="modifyCustomerInfoAction" class="edu.nju.hostelworld.action.ModifyCustomerInfoAction"/>
-    <bean id="modifyHotelInfoAction" class="edu.nju.hostelworld.action.ModifyHotelInfoAction"/>
-    <bean id="approveHotelToOpenAction" class="edu.nju.hostelworld.action.ApproveHotelToOpenAction"/>
-
-    <!-- serivce的配置 -->
-    <bean id="loginService" class="edu.nju.hostelworld.service.impl.LoginServiceImpl"/>
-    <bean id="registerService" class="edu.nju.hostelworld.service.impl.RegisterServiceImpl"/>
-    <bean id="hotelService" class="edu.nju.hostelworld.service.impl.HotelServiceImpl"/>
-
-    <!-- dao的配置 -->
-    <bean id="baseDao" class="edu.nju.hostelworld.dao.impl.BaseDaoImpl"/>
-    <bean id="userDao" class="edu.nju.hostelworld.dao.impl.UserDaoImpl"/>
-    <bean id="hotelDao" class="edu.nju.hostelworld.dao.impl.HotelDaoImpl"/>
-
-    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
-        <!--<tx:attributes>-->
-            <!--<tx:method name="*User" propagation="REQUIRED" />-->
-            <!--<tx:method name="*" propagation="NOT_SUPPORTED" read-only="true" />-->
-        <!--</tx:attributes>-->
-    <!--</tx:advice>-->
+    <!-- 定义扫描根路径为edu.nju.hostelworld，不使用默认的扫描方式 -->
+    <context:component-scan base-package="edu.nju.hostelworld" use-default-filters="false">
+        <!-- 扫描符合@Service @Repository的类 -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
 </beans>

@@ -5,12 +5,14 @@ import edu.nju.hostelworld.model.HotelInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 import edu.nju.hostelworld.service.inf.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Hanz on 2017/3/15.
  *
  * @author Hanz
  */
+@Service("hotelService")
 public class HotelServiceImpl implements HotelService {
 
     @Autowired
