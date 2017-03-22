@@ -34,6 +34,12 @@ public class HotelDaoImpl implements HotelDao {
 
     @Override
     public HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity) {
+        String number = String.valueOf(baseDao.getTotalCount(HotelInfoEntity.class)+1);
+        for (int i = number.length(); i < 15; i++) {
+            number = "0"+number;
+        }
+        hotelInfoEntity.setId(number);
+        hotelInfoEntity.setIsAccepted((byte)0);
         baseDao.save(hotelInfoEntity);
         return hotelInfoEntity;
     }
@@ -42,4 +48,15 @@ public class HotelDaoImpl implements HotelDao {
     public List<HotelEntity> getHotelList() {
         return baseDao.getAllList(HotelEntity.class);
     }
+
+    @Override
+    public HotelEntity getHotelByID(String id) {
+        return (HotelEntity) baseDao.load(HotelEntity.class, id);
+    }
+
+    @Override
+    public void updateHotel(HotelEntity hotelEntity) {
+        baseDao.update(hotelEntity);
+    }
+
 }

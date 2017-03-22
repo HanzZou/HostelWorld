@@ -3,6 +3,7 @@ package edu.nju.hostelworld.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 import edu.nju.hostelworld.service.inf.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,12 @@ public class ReleasePlanAction extends ActionSupport implements ModelDriven<Plan
     }
 
     public String execute() {
-        plan.setIsReserved((byte) '0');
+        plan.setIsReserved((byte)0);
         // 获取酒店编号
         Map session = ActionContext.getContext().getSession();
-        plan.setHotelId((String) session.get("hotelId"));
+        plan.setHotelId(((HotelEntity)session.get("hotel")).getId());
         hotelService.releasePlan(plan);
+
         return "SUCCESS";
     }
 

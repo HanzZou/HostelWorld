@@ -60,6 +60,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         session.put("logined", true);
         session.put("managerId", manager.getId());
         session.put("managerName", manager.getName());
+        session.put("pwd", manager.getPassword());
 
         Map request = (Map) ActionContext.getContext().get("request");
         request.put("hotelToOpen", managerService.getHotelToOpen());
@@ -79,8 +80,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
 
         Map session = ActionContext.getContext().getSession();
         session.put("logined", true);
-        session.put("hotelId", hotel.getId());
-        session.put("hotelName", hotel.getName());
+        session.put("hotel", hotel);
 
         return "HOTEL";
     }

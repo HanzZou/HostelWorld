@@ -18,4 +18,8 @@ public interface HotelDao {
     HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity);
 
     List<HotelEntity> getHotelList();
+
+    HotelEntity getHotelByID(String id);
+
+    void updateHotel(HotelEntity hotelEntity);
 }

@@ -14,8 +14,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    注册成功！
-    <p>${name},您的ID为${id}</p>
-    <input class="btn btn-default" onclick="window.location.href='/view/login.jsp'" value="返回登录">
+    <div class="col-md-4"  style="
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;">
+        注册成功！
+        <br>
+        ${name},您的ID为${id}
+        <input class="btn btn-default" onclick="window.location.href='/view/login.jsp'" value="返回登录">
+    </div>
 </body>
 </html>

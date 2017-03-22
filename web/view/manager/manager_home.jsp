@@ -28,8 +28,10 @@
         <li><a href="#settle" data-toggle="tab">结算</a></li>
         <li><a href="#check" data-toggle="tab">查看报表</a></li>
     </ul>
+
     <div id="myContent" class="tab-content">
         <div class="tab-pane fade in active" id="examination">
+            <s:form action="approve" method="POST">
             开店申请:
             <table class="table">
                 <thead>
@@ -50,7 +52,7 @@
                             <th><s:property value="#hotel.address"/></th>
                             <th><s:property value="#hotel.telephone"/></th>
                             <th><s:property value="#hotel.cardId"/></th>
-                            <th></th>
+                            <th><input type="checkbox" name="hotelToOpenList" value=${hotel.id}></th>
                         </tr>
                     </s:iterator>
                 </tbody>
@@ -69,14 +71,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <s:iterator value="#request.hotelInfo" var="hotel">
+                    <s:iterator value="#request.hotelInfo" var="info">
                         <tr>
-                            <th><s:property value="#hotel.id"/></th>
-                            <th><s:property value="#hotel.name"/></th>
-                            <th><s:property value="#hotel.address"/></th>
-                            <th><s:property value="#hotel.telephone"/></th>
-                            <th><s:property value="#hotel.cardId"/></th>
-                            <th></th>
+                            <th><s:property value="#info.id"/></th>
+                            <th><s:property value="#info.name"/></th>
+                            <th><s:property value="#info.address"/></th>
+                            <th><s:property value="#info.telephone"/></th>
+                            <th><s:property value="#info.cardId"/></th>
+                            <th><input type="checkbox" name="hotelInfoList" value=${info.id}></th>
                         </tr>
                     </s:iterator>
                 </tbody>
@@ -96,20 +98,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <s:iterator value="#request.customerInfo" var="customer">
+                    <s:iterator value="#request.customerInfo" var="info">
                         <tr>
-                            <th><s:property value="#customer.id"/></th>
-                            <th><s:property value="#customer.name"/></th>
-                            <th><s:property value="#customer.telephone"/></th>
-                            <th><s:property value="#customer.address"/></th>
-                            <th><s:property value="#customer.telephone"/></th>
-                            <th><s:property value="#customer.cardId"/></th>
-                            <th></th>
+                            <th><s:property value="#info.id"/></th>
+                            <th><s:property value="#info.name"/></th>
+                            <th><s:property value="#info.telephone"/></th>
+                            <th><s:property value="#info.address"/></th>
+                            <th><s:property value="#info.telephone"/></th>
+                            <th><s:property value="#info.cardId"/></th>
+                            <th><input type="checkbox" name="customerInfoList" value=${info.id}></th>
                         </tr>
                     </s:iterator>
                 </tbody>
             </table>
+                <input class="btn btn-default pull-right" type="submit" value="批准">
+            </s:form>
         </div>
     </div>
+
 </body>
 </html>

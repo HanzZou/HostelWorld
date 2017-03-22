@@ -60,4 +60,29 @@ public class ManagerServiceImpl implements ManagerService {
         }
         return result;
     }
+
+    @Override
+    public void approveHotelToOpen(List<String> hotelToOpen) {
+        for (String id:hotelToOpen) {
+            managerDao.updateHotelToOpen(id);
+        }
+    }
+
+    @Override
+    public void approveHotelInfo(List<String> hotelInfo) {
+        for (String id:hotelInfo) {
+            HotelInfoEntity hotelInfoEntity = managerDao.updateHotelInfo(id);
+            HotelEntity hotelEntity = hotelDao.getHotelByID(hotelInfoEntity.getHotelId());
+            hotelEntity.setTelephone(hotelInfoEntity.getTelephone());
+            hotelEntity.setCardId(hotelInfoEntity.getCardId());
+            hotelEntity.setName(hotelInfoEntity.getName());
+            hotelEntity.setAddress(hotelInfoEntity.getAddress());
+            hotelDao.updateHotel(hotelEntity);
+        }
+    }
+
+    @Override
+    public void approveCustomerInfo(List<String> customerInfoList) {
+
+    }
 }

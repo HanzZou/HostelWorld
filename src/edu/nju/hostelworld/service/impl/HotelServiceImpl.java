@@ -25,6 +25,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public HotelInfoEntity modifyInfo(HotelInfoEntity hotelInfoEntity) {
+
         return hotelDao.modifyInfo(hotelInfoEntity);
     }
 }

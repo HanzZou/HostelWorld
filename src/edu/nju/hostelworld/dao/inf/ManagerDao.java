@@ -15,4 +15,7 @@ public interface ManagerDao {
 
     List<CustomerInfoEntity> getCustomerInfo();
 
+    void updateHotelToOpen(String id);
+
+    HotelInfoEntity updateHotelInfo(String id);
 }

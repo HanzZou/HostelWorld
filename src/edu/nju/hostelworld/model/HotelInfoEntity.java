@@ -117,4 +117,5 @@ public class HotelInfoEntity {
         result = 31 * result + (isAccepted != null ? isAccepted.hashCode() : 0);
         return result;
     }
+
 }

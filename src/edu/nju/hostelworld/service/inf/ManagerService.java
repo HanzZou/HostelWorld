@@ -18,4 +18,10 @@ public interface ManagerService {
     public List<HotelInfoEntity> getHotelInfo();
 
     public List<CustomerInfoEntity> getCustomerInfo();
+
+    void approveHotelToOpen(List<String> hotelToOpen);
+
+    void approveHotelInfo(List<String> hotelInfo);
+
+    void approveCustomerInfo(List<String> customerInfoList);
 }

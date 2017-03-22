@@ -15,10 +15,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="col-md-8 center">
-    <div>
-        <s:form action="" method="POST">
+    <div class="col-md-8 center" style="
+         float: none;
+         display: block;
+         margin-left: auto;
+         margin-right: auto;">
 
-        </s:form>
+        <div>
+            <s:form action="" method="POST">
+
+            </s:form>
+        </div>
+
+        <div>
+
+        </div>
+
     </div>
 </body>
 </html>

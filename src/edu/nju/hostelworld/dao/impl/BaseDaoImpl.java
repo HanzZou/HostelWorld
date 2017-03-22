@@ -51,6 +51,7 @@ public class BaseDaoImpl implements BaseDao {
         return getSession().get(c, id);
     }
 
+    @Transactional
     @Override
     public List getAllList(Class c) {
         String hql = "from " + c.getName();
@@ -84,8 +85,8 @@ public class BaseDaoImpl implements BaseDao {
         Session session = getNewSession();
         Transaction tx = session.beginTransaction();
         session.update(bean);
-        tx.commit();
         session.flush();
+        tx.commit();
         session.clear();
         session.close();
     }
@@ -95,8 +96,8 @@ public class BaseDaoImpl implements BaseDao {
         Session session = getNewSession();
         Transaction tx = session.beginTransaction();
         session.delete(bean);
-        tx.commit();
         session.flush();
+        tx.commit();
         session.clear();
         session.close();
     }
@@ -107,8 +108,8 @@ public class BaseDaoImpl implements BaseDao {
         Transaction tx = session.beginTransaction();
         Object obj = session.get(c, id);
         session.delete(obj);
-        tx.commit();
         flush();
+        tx.commit();
         clear();
     }
 
