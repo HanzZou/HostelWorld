@@ -21,7 +21,8 @@
             float: none;
             display: block;
             margin-left: auto;
-            margin-right: auto;">
+            margin-right: auto;
+            margin-top: 120px;">
         <s:form action="user_login" method="post">
             <div class="form-group">
                 <label>账号:</label>

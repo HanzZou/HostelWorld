@@ -3,6 +3,7 @@ package edu.nju.hostelworld.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import edu.nju.hostelworld.model.CustomerEntity;
 import edu.nju.hostelworld.model.CustomerInfoEntity;
 import org.springframework.stereotype.Controller;
 
@@ -26,6 +27,7 @@ public class ModifyCustomerInfoAction extends ActionSupport implements ModelDriv
 
     public String execute() {
         Map session = ActionContext.getContext().getSession();
+        customerInfoEntity.setId(((CustomerEntity)session.get("customer")).getId());
         return "success";
     }
 }

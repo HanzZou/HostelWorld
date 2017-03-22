@@ -9,7 +9,7 @@ import java.sql.Date;
  * @author Hanz
  */
 @Entity
-@Table(name = "checkin", schema = "hostelworld", catalog = "")
+@Table(name = "checkin", schema = "hostelworld")
 public class CheckinEntity {
     private String id;
     private String hotelId;

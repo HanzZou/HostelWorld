@@ -1,5 +1,6 @@
 package edu.nju.hostelworld.dao.inf;
 
+import edu.nju.hostelworld.model.CheckinEntity;
 import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
 
@@ -18,4 +19,6 @@ public interface ManagerDao {
     void updateHotelToOpen(String id);
 
     HotelInfoEntity updateHotelInfo(String id);
+
+    List<CheckinEntity> getCheckinReport();
 }

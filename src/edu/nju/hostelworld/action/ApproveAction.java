@@ -3,13 +3,10 @@ package edu.nju.hostelworld.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import edu.nju.hostelworld.service.inf.ManagerService;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +17,7 @@ import java.util.Map;
  * @author Hanz
  */
 @Controller("approveAction")
-public class ApproveAction extends ActionSupport implements ServletResponseAware {
-
-    private HttpServletResponse response;
+public class ApproveAction extends ActionSupport {
 
     public List<String> hotelToOpenList = new ArrayList();
     public List<String> hotelInfoList = new ArrayList<>();
@@ -67,8 +62,4 @@ public class ApproveAction extends ActionSupport implements ServletResponseAware
         this.customerInfoList = customerInfoList;
     }
 
-    @Override
-    public void setServletResponse(HttpServletResponse response) {
-        this.response = response;
-    }
 }

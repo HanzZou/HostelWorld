@@ -15,7 +15,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="col-md-8 center">
+<div class="col-md-8 center"  style="
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;">
     <div>
         <div class="col-md-4">欢迎使用，${sessionScope.get("hotel").name}</div>
         <div class="col-md-4"></div>

@@ -2,6 +2,7 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.ManagerDao;
+import edu.nju.hostelworld.model.CheckinEntity;
 import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
@@ -44,5 +45,10 @@ public class ManagerDaoImpl implements ManagerDao {
         hotelInfoEntity.setIsAccepted((byte)1);
         baseDao.update(hotelInfoEntity);
         return hotelInfoEntity;
+    }
+
+    @Override
+    public List<CheckinEntity> getCheckinReport() {
+        return baseDao.getAllList(CheckinEntity.class);
     }
 }

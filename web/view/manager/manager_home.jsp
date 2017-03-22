@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="col-md-8 center">
-    欢迎使用, ${sessionScope.get("managerName")}
+    欢迎使用, ${sessionScope.get("manager").getName()}
     <br/>
     <s:form action="user_logout" method="POST">
         <input class="btn btn-default col-md-2" type="submit" value="注销">

@@ -1,5 +1,6 @@
 package edu.nju.hostelworld.service.inf;
 
+import edu.nju.hostelworld.model.CheckinEntity;
 import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
@@ -24,4 +25,6 @@ public interface ManagerService {
     void approveHotelInfo(List<String> hotelInfo);
 
     void approveCustomerInfo(List<String> customerInfoList);
+
+    List<CheckinEntity> getCheckinReport();
 }

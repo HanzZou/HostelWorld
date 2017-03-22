@@ -2,6 +2,7 @@ package edu.nju.hostelworld.service.impl;
 
 import edu.nju.hostelworld.dao.inf.HotelDao;
 import edu.nju.hostelworld.dao.inf.ManagerDao;
+import edu.nju.hostelworld.model.CheckinEntity;
 import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.HotelEntity;
 import edu.nju.hostelworld.model.HotelInfoEntity;
@@ -83,6 +84,13 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public void approveCustomerInfo(List<String> customerInfoList) {
+        for (String id:customerInfoList) {
 
+        }
+    }
+
+    @Override
+    public List<CheckinEntity> getCheckinReport() {
+        return managerDao.getCheckinReport();
     }
 }
