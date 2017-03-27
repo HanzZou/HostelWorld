@@ -2,10 +2,7 @@ package edu.nju.hostelworld.service.impl;
 
 import edu.nju.hostelworld.dao.inf.HotelDao;
 import edu.nju.hostelworld.dao.inf.ManagerDao;
-import edu.nju.hostelworld.model.CheckinEntity;
-import edu.nju.hostelworld.model.CustomerInfoEntity;
-import edu.nju.hostelworld.model.HotelEntity;
-import edu.nju.hostelworld.model.HotelInfoEntity;
+import edu.nju.hostelworld.model.*;
 import edu.nju.hostelworld.service.inf.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,4 +90,5 @@ public class ManagerServiceImpl implements ManagerService {
     public List<CheckinEntity> getCheckinReport() {
         return managerDao.getCheckinReport();
     }
+
 }

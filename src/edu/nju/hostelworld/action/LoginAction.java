@@ -3,10 +3,8 @@ package edu.nju.hostelworld.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import edu.nju.hostelworld.model.CustomerEntity;
-import edu.nju.hostelworld.model.HotelEntity;
-import edu.nju.hostelworld.model.LoginUser;
-import edu.nju.hostelworld.model.ManagerEntity;
+import edu.nju.hostelworld.model.*;
+import edu.nju.hostelworld.service.inf.CustomerService;
 import edu.nju.hostelworld.service.inf.HotelService;
 import edu.nju.hostelworld.service.inf.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
     private HotelService hotelService;
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private CustomerService customerService;
 
     private LoginUser user = new LoginUser();
 
@@ -92,9 +92,14 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         if (customer == null) {
             return "WRONG";
         }
+
         Map session = ActionContext.getContext().getSession();
         session.put("logined", true);
         session.put("customer", customer);
+
+        Map request = (Map) ActionContext.getContext().get("request");
+        List<PlanEntity> plans = customerService.getPlans();
+        request.put("plans", plans);
         return "CUSTOMER";
     }
 

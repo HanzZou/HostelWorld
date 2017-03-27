@@ -37,6 +37,14 @@
         <action name="approve" class="approveAction">
             <result name="success">/view/manager/manager_home.jsp</result>
         </action>
+
+        <action name="reserve" class="reserveAction">
+            <result name="success">/view/customer/customer_home.jsp</result>
+        </action>
+
+        <action name="cancelReservation" class="cancelReservation">
+            <result name="success">/view/customer/customer_home.jsp</result>
+        </action>
     </package>
     
 </struts>
