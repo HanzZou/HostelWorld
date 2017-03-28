@@ -1,5 +1,6 @@
 package edu.nju.hostelworld.service.impl;
 
+import edu.nju.hostelworld.dao.inf.CustomerDao;
 import edu.nju.hostelworld.dao.inf.HotelDao;
 import edu.nju.hostelworld.dao.inf.ManagerDao;
 import edu.nju.hostelworld.model.*;
@@ -22,6 +23,8 @@ public class ManagerServiceImpl implements ManagerService {
     private HotelDao hotelDao;
     @Autowired
     private ManagerDao managerDao;
+    @Autowired
+    private CustomerDao customerDao;
 
     @Override
     public List<HotelEntity> getHotelToOpen() {
@@ -82,7 +85,13 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public void approveCustomerInfo(List<String> customerInfoList) {
         for (String id:customerInfoList) {
-
+            CustomerInfoEntity customerInfoEntity = managerDao.updateCustomerInfo(id);
+            CustomerEntity customerEntity = customerDao.getCustomerByID(customerInfoEntity.getMemberId());
+            customerEntity.setAddress(customerInfoEntity.getAddress());
+            customerEntity.setCardId(customerInfoEntity.getCardId());
+            customerEntity.setName(customerInfoEntity.getName());
+            customerEntity.setTelephone(customerInfoEntity.getTelephone());
+            customerDao.updateCustomer(customerEntity);
         }
     }
 

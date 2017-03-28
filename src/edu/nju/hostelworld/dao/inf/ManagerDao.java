@@ -20,5 +20,7 @@ public interface ManagerDao {
 
     HotelInfoEntity updateHotelInfo(String id);
 
+    CustomerInfoEntity updateCustomerInfo(String id);
+
     List<CheckinEntity> getCheckinReport();
 }

@@ -48,6 +48,14 @@ public class ManagerDaoImpl implements ManagerDao {
     }
 
     @Override
+    public CustomerInfoEntity updateCustomerInfo(String id) {
+        CustomerInfoEntity customerInfoEntity = (CustomerInfoEntity) baseDao.load(CustomerInfoEntity.class, id);
+        customerInfoEntity.setIsAccepted((byte)1);
+        baseDao.update(customerInfoEntity);
+        return customerInfoEntity;
+    }
+
+    @Override
     public List<CheckinEntity> getCheckinReport() {
         return baseDao.getAllList(CheckinEntity.class);
     }

@@ -11,11 +11,11 @@ import java.util.List;
  */
 public interface ManagerService {
 
-    public List<HotelEntity> getHotelToOpen();
+    List<HotelEntity> getHotelToOpen();
 
-    public List<HotelInfoEntity> getHotelInfo();
+    List<HotelInfoEntity> getHotelInfo();
 
-    public List<CustomerInfoEntity> getCustomerInfo();
+    List<CustomerInfoEntity> getCustomerInfo();
 
     void approveHotelToOpen(List<String> hotelToOpen);
 

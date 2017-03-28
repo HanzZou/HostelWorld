@@ -2,12 +2,15 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.CustomerDao;
-import edu.nju.hostelworld.model.HotelInfoEntity;
+import edu.nju.hostelworld.model.CustomerEntity;
+import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
 import edu.nju.hostelworld.model.ReservationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -39,12 +42,41 @@ public class CustomerDaoImpl implements CustomerDao {
         reservationEntity.setIsCanceled((byte)0);
         reservationEntity.setMemberId(customer);
         reservationEntity.setPlanId(planId);
+        reservationEntity.setIsFinished((byte)0);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String day = simpleDateFormat.format(new java.util.Date());
+        reservationEntity.setTime(Date.valueOf(day));
         String number = String.valueOf(baseDao.getTotalCount(ReservationEntity.class)+1);
         for (int i = number.length(); i < 10; i++) {
             number = "0"+number;
         }
         reservationEntity.setId(number);
         baseDao.save(reservationEntity);
+    }
+
+    @Override
+    public List<ReservationEntity> getReservations() {
+        return baseDao.getAllList(ReservationEntity.class);
+    }
+
+    @Override
+    public void modify(CustomerInfoEntity customerInfoEntity) {
+        String number = String.valueOf(baseDao.getTotalCount(CustomerInfoEntity.class)+1);
+        for (int i = number.length(); i < 15; i++) {
+            number = "0" + number;
+        }
+        customerInfoEntity.setId(number);
+        baseDao.save(customerInfoEntity);
+    }
+
+    @Override
+    public CustomerEntity getCustomerByID(String id) {
+        return (CustomerEntity) baseDao.load(CustomerEntity.class, id);
+    }
+
+    @Override
+    public void updateCustomer(CustomerEntity customerEntity) {
+        baseDao.update(customerEntity);
     }
 
 }

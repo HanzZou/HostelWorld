@@ -1,6 +1,8 @@
 package edu.nju.hostelworld.service.inf;
 
+import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
+import edu.nju.hostelworld.model.ReservationEntity;
 
 import java.util.List;
 
@@ -15,4 +17,8 @@ public interface CustomerService {
     void reservePlan(String planId);
 
     void recordReservation(String planId, String customer);
+
+    List<ReservationEntity> getReservations(String id);
+
+    void modifyInfo(CustomerInfoEntity customerInfoEntity);
 }

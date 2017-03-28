@@ -1,6 +1,9 @@
 package edu.nju.hostelworld.dao.inf;
 
+import edu.nju.hostelworld.model.CustomerEntity;
+import edu.nju.hostelworld.model.CustomerInfoEntity;
 import edu.nju.hostelworld.model.PlanEntity;
+import edu.nju.hostelworld.model.ReservationEntity;
 
 import java.util.List;
 
@@ -15,4 +18,12 @@ public interface CustomerDao {
     void reservePlan(String planId);
 
     void recordReservation(String planId, String customer);
+
+    List<ReservationEntity> getReservations();
+
+    void modify(CustomerInfoEntity customerInfoEntity);
+
+    CustomerEntity getCustomerByID(String id);
+
+    void updateCustomer(CustomerEntity customerEntity);
 }

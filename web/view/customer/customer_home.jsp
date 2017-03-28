@@ -23,6 +23,10 @@
             margin-bottom: 20px;">
         <div class="col-md-4">
             欢迎使用, ${sessionScope.get("customer").getName()}
+            <br>
+            <s:if test="#session.customer.isBlocked=='1'.toString()">
+                <div style="color: red;">您还不是会员</div>
+            </s:if>
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -57,27 +61,44 @@
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <thead>
+                        <tbody>
                         <s:iterator value="#request.plans" var="plan">
                             <tr>
-                                <th><s:property value="#plan.hotelId"/></th>
-                                <th><s:property value="#plan.startDay"/></th>
-                                <th><s:property value="#plan.endDay"/></th>
-                                <th><s:property value="#plan.room"/></th>
-                                <th><s:property value="#plan.price"/></th>
-                                <th><input type="checkbox" name="planReserved" value=${plan.id}></th>
+                                <td><s:property value="#plan.hotelId"/></td>
+                                <td><s:property value="#plan.startDay"/></td>
+                                <td><s:property value="#plan.endDay"/></td>
+                                <td><s:property value="#plan.room"/></td>
+                                <td><s:property value="#plan.price"/></td>
+                                <td><input type="checkbox" name="planReserved" value=${plan.id}></td>
                             </tr>
                         </s:iterator>
-                        </thead>
+                        </tbody>
                     </table>
                     <input class="btn btn-default pull-right" type="submit" value="预订">
                 </s:form>
             </div>
-
+                <br>
             <h1>已预订</h1>
             <div>
                 <s:form action="cancelReservation" method="POST">
-
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>预订时间</th>
+                            <th>酒店</th>
+                            <th>房间号</th>
+                            <th>入住时间</th>
+                            <th>离开时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <s:iterator value="#request.reservations" var="reservation">
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </s:iterator>
+                        </tbody>
+                    </table>
                 </s:form>
             </div>
 
@@ -88,14 +109,25 @@
         </div>
 
         <div class="tab-pane fade" id="manage">
-            <table>
-                <thead>
-                    <tr></tr>
-                </thead>
-                <tbody>
-                    <tr></tr>
-                </tbody>
-            </table>
+            <s:form action="modify_customer_info" method="post">
+                <div class="form-group col-md-6">
+                    <label>用户名:</label>
+                    <input class="form-control" name="name" value=${customer.name}>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>地址:</label>
+                    <input class="form-control" name="address" value=${customer.address}>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>联系号码:</label>
+                    <input class="form-control" name="telephone" value=${customer.telephone}>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>银行卡号:</label>
+                    <input class="form-control" name="cardId" value=${customer.cardId}>
+                </div>
+                <input class="btn btn-default col-md-2" type="submit" value="修改信息">
+            </s:form>
         </div>
     </div>
     <script>

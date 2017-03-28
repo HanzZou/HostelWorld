@@ -73,9 +73,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         loginHotel.setId(user.getUid());
         loginHotel.setPassword(user.getPwd());
         HotelEntity hotel = loginService.findValidatedHotel(loginHotel);
-        if (hotel == null) {
+        if (hotel == null)
             return "WRONG";
-        }
+
+        System.out.println(hotel.getIsApproved());
+        if (hotel.getIsApproved() == 0)
+            return "WAIT";
 
         Map session = ActionContext.getContext().getSession();
         session.put("logined", true);
@@ -98,8 +101,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         session.put("customer", customer);
 
         Map request = (Map) ActionContext.getContext().get("request");
-        List<PlanEntity> plans = customerService.getPlans();
-        request.put("plans", plans);
+        request.put("plans", customerService.getPlans());
+        request.put("reservations", customerService.getReservations(customer.getId()));
         return "CUSTOMER";
     }
 

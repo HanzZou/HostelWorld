@@ -38,7 +38,7 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
         customer.setTelephone(user.getTelephone());
         customer.setCardId(user.getCard_id());
         customer.setBlockedDay(new Date(0));
-        customer.setIsBlocked((byte) '1');
+        customer.setIsBlocked((byte)1);
         customer.setVipGrade(1);
         customer.setCredits(0);
         registerService.registerCustomer(customer);
@@ -53,7 +53,7 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
         hotel.setTelephone(user.getTelephone());
         hotel.setCardId(user.getCard_id());
         hotel.setAddress(user.getAddress());
-        hotel.setIsApproved((byte) '0');
+        hotel.setIsApproved((byte)0);
         hotel.setName(user.getName());
         registerService.registerHotel(hotel);
         ServletActionContext.getRequest().setAttribute("id", hotel.getId());

@@ -9,13 +9,19 @@
             <column name="id" sql-type="char(10)" length="10"/>
         </id>
         <property name="memberId">
-            <column name="member_id" sql-type="char(7)" length="7" not-null="true"/>
+            <column name="member_id" sql-type="char(7)" length="7"/>
         </property>
         <property name="planId">
-            <column name="plan_id" sql-type="char(10)" length="10" not-null="true"/>
+            <column name="plan_id" sql-type="char(10)" length="10"/>
         </property>
         <property name="isCanceled">
-            <column name="is_canceled" sql-type="tinyint(1)" not-null="true"/>
+            <column name="is_canceled" sql-type="tinyint(1)"/>
+        </property>
+        <property name="isFinished">
+            <column name="is_finished" sql-type="tinyint(1)"/>
+        </property>
+        <property name="time">
+            <column name="time" sql-type="date"/>
         </property>
     </class>
 </hibernate-mapping>

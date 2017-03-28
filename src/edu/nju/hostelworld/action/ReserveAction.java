@@ -28,7 +28,6 @@ public class ReserveAction extends ActionSupport {
     public String execute() {
         for (String planId: planReserved) {
             customerService.reservePlan(planId);
-
             Map session = ActionContext.getContext().getSession();
             customerService.recordReservation(planId, ((CustomerEntity)session.get("customer")).getId());
         }

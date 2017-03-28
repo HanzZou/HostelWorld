@@ -55,10 +55,13 @@ INSERT INTO plan VALUES ("0000000001","0000001","815","2017-3-15","2017-3-16","1
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `id` CHAR(10) PRIMARY KEY ,
-  `member_id` CHAR(7) ,
-  `plan_id` CHAR(10) ,
-  `is_canceled` BOOLEAN
+  `time` DATE NOT NULL ,
+  `member_id` CHAR(7) NOT NULL ,
+  `plan_id` CHAR(10) NOT NULL ,
+  `is_canceled` BOOLEAN NOT NULL ,
+  `is_finished` BOOLEAN NOT NULL
 );
+INSERT INTO reservation VALUES ("0000000001","2017-04-01", "0000001", "0000000001", 0, 0);
 
 # 入住表
 DROP TABLE IF EXISTS `checkin`;

@@ -27,9 +27,12 @@ public class ApproveAction extends ActionSupport {
     private ManagerService managerService;
 
     public String execute() throws IOException {
-        managerService.approveHotelToOpen(hotelToOpenList);
-        managerService.approveHotelInfo(hotelInfoList);
-        managerService.approveCustomerInfo(customerInfoList);
+        if (hotelToOpenList.size()!=0)
+            managerService.approveHotelToOpen(hotelToOpenList);
+        if (hotelInfoList.size()!=0)
+            managerService.approveHotelInfo(hotelInfoList);
+        if (customerInfoList.size()!=0)
+            managerService.approveCustomerInfo(customerInfoList);
 
         Map request = (Map) ActionContext.getContext().get("request");
         request.put("hotelToOpen", managerService.getHotelToOpen());
