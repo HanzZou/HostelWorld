@@ -15,7 +15,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body class="col-md-4 center">
+<body class="col-md-8 center">
+<div style="float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 120px;">
     <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a href="#customer" data-toggle="tab">顾客注册</a></li>
         <li><a href="#hotel" data-toggle="tab">客栈注册</a></li>
@@ -79,5 +84,6 @@
             });
         });
     </script>
+</div>
 </body>
 </html>

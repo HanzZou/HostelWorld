@@ -71,9 +71,11 @@ CREATE TABLE `checkin` (
   `member` CHAR(7) NOT NULL ,
   `room` CHAR(4) NOT NULL ,
   `date` DATE NOT NULL ,
-  `people` INT NOT NULL ,
+  `p_num` INT NOT NULL ,
+  `names` VARCHAR(255) ,
   `leave_date` DATE ,
-  `pay_card` BOOLEAN NOT NULL
+  `pay_card` BOOLEAN NOT NULL ,
+  `checkout` BOOLEAN NOT NULL
 );
 
 # 银行卡表
@@ -105,4 +107,15 @@ CREATE TABLE `hotel_info` (
   `name` VARCHAR(255) NOT NULL ,
   `card_id` CHAR(19) NOT NULL ,
   `is_accepted` BOOLEAN
+);
+
+# 财务表
+DROP TABLE IF EXISTS `finance_record`;
+CREATE TABLE `finance_record` (
+  `id` char(15) PRIMARY KEY ,
+  `hotel_id` CHAR(7) NOT NULL ,
+  `member_id` CHAR(7) NOT NULL ,
+  `price` INT NOT NULL ,
+  `time` DATE NOT NULL ,
+  `is_settled` BOOLEAN
 );

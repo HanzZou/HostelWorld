@@ -28,7 +28,7 @@
         </action>
 
         <action name="modify_customer_info" class="modifyCustomerInfoAction">
-            <result name="success">/view/customer/customer_home.jsp#manage</result>
+            <result name="success">/view/customer/customer_home.jsp</result>
         </action>
 
         <action name="modify_hotel_info" class="modifyHotelInfoAction">
@@ -45,6 +45,26 @@
 
         <action name="cancelReservation" class="cancelReservation">
             <result name="success">/view/customer/customer_home.jsp</result>
+        </action>
+
+        <action name="unlock" class="unlock">
+            <result name="success">/view/customer/customer_home.jsp</result>
+        </action>
+
+        <action name="cancelVIP" class="cancelVIP">
+            <result name="success">/view/customer/customer_home.jsp</result>
+        </action>
+
+        <action name="checkin" class="checkin">
+            <result name="success">/view/hotel/hotel_home.jsp</result>
+        </action>
+
+        <action name="checkinByHand" class="checkinByHand">
+            <result name="success">/view/hotel/hotel_home.jsp</result>
+        </action>
+
+        <action name="checkout" class="checkout">
+            <result name="success">/view/hotel/hotel_home.jsp</result>
         </action>
     </package>
     

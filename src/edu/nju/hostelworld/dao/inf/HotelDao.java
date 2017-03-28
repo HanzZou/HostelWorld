@@ -1,8 +1,6 @@
 package edu.nju.hostelworld.dao.inf;
 
-import edu.nju.hostelworld.model.HotelEntity;
-import edu.nju.hostelworld.model.HotelInfoEntity;
-import edu.nju.hostelworld.model.PlanEntity;
+import edu.nju.hostelworld.model.*;
 
 import java.util.List;
 
@@ -22,4 +20,12 @@ public interface HotelDao {
     HotelEntity getHotelByID(String id);
 
     void updateHotel(HotelEntity hotelEntity);
+
+    ReservationEntity checkin(String id);
+
+    void saveCheckInRecord(CheckinEntity checkinEntity);
+
+    CheckinEntity getCheckinRecordByID(String id);
+
+    void checkout(CheckinEntity checkinEntity);
 }

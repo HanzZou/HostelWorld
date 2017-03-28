@@ -4,21 +4,23 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Hanz on 2017/3/20.
+ * Created by Hanz on 2017/3/28.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "checkin", schema = "hostelworld")
+@Table(name = "checkin", schema = "hostelworld", catalog = "")
 public class CheckinEntity {
     private String id;
     private String hotelId;
     private String member;
     private String room;
     private Date date;
-    private int people;
     private Date leaveDate;
     private byte payCard;
+    private int pNum;
+    private String names;
+    private byte checkout;
 
     @Id
     @Column(name = "id", nullable = false, length = 15)
@@ -71,16 +73,6 @@ public class CheckinEntity {
     }
 
     @Basic
-    @Column(name = "people", nullable = false)
-    public int getPeople() {
-        return people;
-    }
-
-    public void setPeople(int people) {
-        this.people = people;
-    }
-
-    @Basic
     @Column(name = "leave_date", nullable = true)
     public Date getLeaveDate() {
         return leaveDate;
@@ -100,6 +92,36 @@ public class CheckinEntity {
         this.payCard = payCard;
     }
 
+    @Basic
+    @Column(name = "p_num", nullable = false)
+    public int getpNum() {
+        return pNum;
+    }
+
+    public void setpNum(int pNum) {
+        this.pNum = pNum;
+    }
+
+    @Basic
+    @Column(name = "names", nullable = true, length = 255)
+    public String getNames() {
+        return names;
+    }
+
+    public void setNames(String names) {
+        this.names = names;
+    }
+
+    @Basic
+    @Column(name = "checkout", nullable = false)
+    public byte getCheckout() {
+        return checkout;
+    }
+
+    public void setCheckout(byte checkout) {
+        this.checkout = checkout;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,14 +129,16 @@ public class CheckinEntity {
 
         CheckinEntity that = (CheckinEntity) o;
 
-        if (people != that.people) return false;
         if (payCard != that.payCard) return false;
+        if (pNum != that.pNum) return false;
+        if (checkout != that.checkout) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (hotelId != null ? !hotelId.equals(that.hotelId) : that.hotelId != null) return false;
         if (member != null ? !member.equals(that.member) : that.member != null) return false;
         if (room != null ? !room.equals(that.room) : that.room != null) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
         if (leaveDate != null ? !leaveDate.equals(that.leaveDate) : that.leaveDate != null) return false;
+        if (names != null ? !names.equals(that.names) : that.names != null) return false;
 
         return true;
     }
@@ -126,9 +150,11 @@ public class CheckinEntity {
         result = 31 * result + (member != null ? member.hashCode() : 0);
         result = 31 * result + (room != null ? room.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + people;
         result = 31 * result + (leaveDate != null ? leaveDate.hashCode() : 0);
         result = 31 * result + (int) payCard;
+        result = 31 * result + pNum;
+        result = 31 * result + (names != null ? names.hashCode() : 0);
+        result = 31 * result + (int) checkout;
         return result;
     }
 }

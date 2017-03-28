@@ -1,8 +1,6 @@
 package edu.nju.hostelworld.service.inf;
 
-import edu.nju.hostelworld.model.CustomerInfoEntity;
-import edu.nju.hostelworld.model.PlanEntity;
-import edu.nju.hostelworld.model.ReservationEntity;
+import edu.nju.hostelworld.model.*;
 
 import java.util.List;
 
@@ -18,7 +16,19 @@ public interface CustomerService {
 
     void recordReservation(String planId, String customer);
 
-    List<ReservationEntity> getReservations(String id);
+    List<Reservation> getReservations(String id);
 
     void modifyInfo(CustomerInfoEntity customerInfoEntity);
+
+    void unlock(String id);
+
+    CustomerEntity getCustomerByID(String id);
+
+    CustomerEntity cancelVIP(String id);
+
+    void cancelReservation(String id);
+
+    List<CheckinEntity> getCheckinRecord(String id);
+
+    List<FinanceRecordEntity> getFinance(String id);
 }

@@ -89,45 +89,101 @@
                             <th>房间号</th>
                             <th>入住时间</th>
                             <th>离开时间</th>
+                            <th>取消预订</th>
                         </tr>
                         </thead>
                         <tbody>
                         <s:iterator value="#request.reservations" var="reservation">
                             <tr>
-                                <td></td>
+                                <td><s:property value="#reservation.time"/> </td>
+                                <td><s:property value="#reservation.hotelName"/> </td>
+                                <td><s:property value="#reservation.room"/> </td>
+                                <td><s:property value="#reservation.startDay"/> </td>
+                                <td><s:property value="#reservation.endDay"/> </td>
+                                <td><input type="checkbox" name="cancelList" value="${reservation.id}"></td>
                             </tr>
                         </s:iterator>
                         </tbody>
                     </table>
+                    <input class="btn btn-default pull-right" type="submit" value="取消"></input>
                 </s:form>
             </div>
 
         </div>
 
         <div class="tab-pane fade" id="check">
+            <h1>入住记录</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>客栈名</th>
+                        <th>入住时间</th>
+                        <th>离开时间</th>
+                        <th>房间号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <s:iterator value="#request.checkinRecord" var="record">
+                    <tr>
+                        <td><s:property value="#record.hotelId"/></td>
+                        <td><s:property value="#record.date"/></td>
+                        <td><s:property value="#record.leaveDate"/></td>
+                        <td><s:property value="#record.room"/></td>
+                    </tr>
+                </s:iterator>
+                </tbody>
+            </table>
 
+            <h1>消费记录</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>酒店名</th>
+                        <th>金额</th>
+                        <th>结算情况</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <s:iterator value="#request.finance" var="record">
+                        <tr>
+                            <td><s:property value="#record.time"/></td>
+                            <td><s:property value="#record.hotelId"/></td>
+                            <td><s:property value="#record.price"/></td>
+                            <td><s:if test="#record.isSettled=='0'.toString()">未结算</s:if><s:else>已结算</s:else></td>
+                        </tr>
+                    </s:iterator>
+                </tbody>
+            </table>
         </div>
 
         <div class="tab-pane fade" id="manage">
-            <s:form action="modify_customer_info" method="post">
-                <div class="form-group col-md-6">
-                    <label>用户名:</label>
-                    <input class="form-control" name="name" value=${customer.name}>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>地址:</label>
-                    <input class="form-control" name="address" value=${customer.address}>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>联系号码:</label>
-                    <input class="form-control" name="telephone" value=${customer.telephone}>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>银行卡号:</label>
-                    <input class="form-control" name="cardId" value=${customer.cardId}>
-                </div>
-                <input class="btn btn-default col-md-2" type="submit" value="修改信息">
-            </s:form>
+            <div style="margin-bottom: 20px;">
+                <s:form action="modify_customer_info" method="post">
+                    <div class="form-group col-md-6">
+                        <label>用户名:</label>
+                        <input class="form-control" name="name" value=${customer.name}>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>地址:</label>
+                        <input class="form-control" name="address" value=${customer.address}>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>联系号码:</label>
+                        <input class="form-control" name="telephone" value=${customer.telephone}>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>银行卡号:</label>
+                        <input class="form-control" name="cardId" value=${customer.cardId}>
+                    </div>
+                    <input class="btn btn-default col-md-2" type="submit" value="修改信息">
+                </s:form>
+            </div>
+            <br>
+            <div style="margin-top: 20px;">
+                <input class="btn btn-default" value="缴纳会费" onclick="window.location.href='unlock'">
+                <input class="btn btn-default" value="取消会员" onclick="window.location.href='cancelVIP'">
+            </div>
         </div>
     </div>
     <script>

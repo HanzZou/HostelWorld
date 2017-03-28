@@ -31,9 +31,16 @@ public class ModifyCustomerInfoAction extends ActionSupport implements ModelDriv
 
     public String execute() {
         Map session = ActionContext.getContext().getSession();
-        customerInfoEntity.setMemberId(((CustomerEntity)session.get("customer")).getId());
+        CustomerEntity customer = (CustomerEntity)session.get("customer");
+        customerInfoEntity.setMemberId(customer.getId());
         customerInfoEntity.setIsAccepted((byte)0);
         customerService.modifyInfo(customerInfoEntity);
+
+        Map request = (Map) ActionContext.getContext().get("request");
+        request.put("plans", customerService.getPlans());
+        request.put("reservations", customerService.getReservations(customer.getId()));
+        request.put("checkinRecord", customerService.getCheckinRecord(customer.getId()));
+        request.put("finance", customerService.getFinance(customer.getId()));
         return "success";
     }
 }

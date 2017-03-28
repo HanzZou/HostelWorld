@@ -2,10 +2,8 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.CustomerDao;
-import edu.nju.hostelworld.model.CustomerEntity;
-import edu.nju.hostelworld.model.CustomerInfoEntity;
-import edu.nju.hostelworld.model.PlanEntity;
-import edu.nju.hostelworld.model.ReservationEntity;
+import edu.nju.hostelworld.model.*;
+import edu.nju.hostelworld.service.inf.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -77,6 +75,51 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public void updateCustomer(CustomerEntity customerEntity) {
         baseDao.update(customerEntity);
+    }
+
+    @Override
+    public void unlock(String id) {
+        CustomerEntity customerEntity = (CustomerEntity) baseDao.load(CustomerEntity.class, id);
+        customerEntity.setIsBlocked((byte)0);
+        baseDao.update(customerEntity);
+    }
+
+    @Override
+    public CustomerEntity cancelVIP(String id) {
+        CustomerEntity customerEntity = (CustomerEntity) baseDao.load(CustomerEntity.class, id);
+        customerEntity.setIsBlocked((byte)1);
+        baseDao.update(customerEntity);
+        return customerEntity;
+    }
+
+    @Override
+    public PlanEntity getPlanByID(String id) {
+        return (PlanEntity) baseDao.load(PlanEntity.class, id);
+    }
+
+    @Override
+    public ReservationEntity cancelReservation(String id) {
+        ReservationEntity reservationEntity = (ReservationEntity) baseDao.load(ReservationEntity.class, id);
+        reservationEntity.setIsCanceled((byte)1);
+        baseDao.update(reservationEntity);
+        return reservationEntity;
+    }
+
+    @Override
+    public void freePlan(String planId) {
+        PlanEntity planEntity = (PlanEntity) baseDao.load(PlanEntity.class, planId);
+        planEntity.setIsReserved((byte)0);
+        baseDao.update(planEntity);
+    }
+
+    @Override
+    public List<CheckinEntity> getCheckinRecord() {
+        return baseDao.getAllList(CheckinEntity.class);
+    }
+
+    @Override
+    public List<FinanceRecordEntity> getFinance() {
+        return baseDao.getAllList(FinanceRecordEntity.class);
     }
 
 }

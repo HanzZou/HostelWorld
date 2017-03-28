@@ -84,6 +84,9 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         session.put("logined", true);
         session.put("hotel", hotel);
 
+        Map request = (Map) ActionContext.getContext().get("request");
+        request.put("reservations", hotelService.getReservations(hotel.getId()));
+
         return "HOTEL";
     }
 
@@ -103,6 +106,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         Map request = (Map) ActionContext.getContext().get("request");
         request.put("plans", customerService.getPlans());
         request.put("reservations", customerService.getReservations(customer.getId()));
+        request.put("checkinRecord", customerService.getCheckinRecord(customer.getId()));
+        request.put("finance", customerService.getFinance(customer.getId()));
         return "CUSTOMER";
     }
 

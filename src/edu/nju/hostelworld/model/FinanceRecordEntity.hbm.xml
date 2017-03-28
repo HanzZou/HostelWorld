@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.nju.hostelworld.model.FinanceRecordEntity" table="finance_record" schema="hostelworld">
+        <id name="id">
+            <column name="id" sql-type="char(15)" length="15"/>
+        </id>
+        <property name="hotelId">
+            <column name="hotel_id" sql-type="char(7)" length="7"/>
+        </property>
+        <property name="memberId">
+            <column name="member_id" sql-type="char(7)" length="7"/>
+        </property>
+        <property name="price">
+            <column name="price" sql-type="int(11)"/>
+        </property>
+        <property name="time">
+            <column name="time" sql-type="date"/>
+        </property>
+        <property name="isSettled">
+            <column name="is_settled" sql-type="tinyint(1)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

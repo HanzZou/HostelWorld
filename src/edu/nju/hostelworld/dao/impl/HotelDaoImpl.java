@@ -2,9 +2,7 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.HotelDao;
-import edu.nju.hostelworld.model.HotelEntity;
-import edu.nju.hostelworld.model.HotelInfoEntity;
-import edu.nju.hostelworld.model.PlanEntity;
+import edu.nju.hostelworld.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -57,6 +55,34 @@ public class HotelDaoImpl implements HotelDao {
     @Override
     public void updateHotel(HotelEntity hotelEntity) {
         baseDao.update(hotelEntity);
+    }
+
+    @Override
+    public ReservationEntity checkin(String id) {
+        ReservationEntity reservationEntity = (ReservationEntity) baseDao.load(ReservationEntity.class, id);
+        reservationEntity.setIsFinished((byte)1);
+        baseDao.update(reservationEntity);
+        return reservationEntity;
+    }
+
+    @Override
+    public void saveCheckInRecord(CheckinEntity checkinEntity) {
+        String number = String.valueOf(baseDao.getTotalCount(CheckinEntity.class)+1);
+        for (int i = number.length(); i < 15; i++) {
+            number = "0"+number;
+        }
+        checkinEntity.setId(number);
+        baseDao.save(checkinEntity);
+    }
+
+    @Override
+    public CheckinEntity getCheckinRecordByID(String id) {
+        return (CheckinEntity) baseDao.load(CheckinEntity.class, id);
+    }
+
+    @Override
+    public void checkout(CheckinEntity checkinEntity) {
+        baseDao.update(checkinEntity);
     }
 
 }

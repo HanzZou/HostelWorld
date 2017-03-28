@@ -20,14 +20,20 @@
         <property name="date">
             <column name="date" sql-type="date"/>
         </property>
-        <property name="people">
-            <column name="people" sql-type="int(11)"/>
-        </property>
         <property name="leaveDate">
             <column name="leave_date" sql-type="date" not-null="true"/>
         </property>
         <property name="payCard">
             <column name="pay_card" sql-type="tinyint(1)"/>
+        </property>
+        <property name="pNum">
+            <column name="p_num" sql-type="int(11)"/>
+        </property>
+        <property name="names">
+            <column name="names" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="checkout">
+            <column name="checkout" sql-type="tinyint(1)"/>
         </property>
     </class>
 </hibernate-mapping>

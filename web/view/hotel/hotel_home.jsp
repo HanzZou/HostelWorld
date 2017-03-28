@@ -23,9 +23,9 @@
     <div>
         <div class="col-md-4">欢迎使用，${sessionScope.get("hotel").name}</div>
         <div class="col-md-4"></div>
-        <div class="col-md-4 pull-right">
+        <div class="col-md-4">
             <s:form action="user_logout" method="POST">
-                <input class="btn btn-default" type="submit" value="注销">
+                <input class="btn btn-default col-md-2" style="float:right;" type="submit" value="注销">
             </s:form>
         </div>
     </div>
@@ -40,25 +40,95 @@
     </div>
     <div id="myContent" class="tab-content">
         <div class="tab-pane fade in active" id="registration">
-            <s:form>
-
+            <s:form action="checkin" method="POST">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>客人名</th>
+                        <th>房间号</th>
+                        <td>预订时间</td>
+                        <th>入住时间</th>
+                        <th>入住</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <s:iterator value="#request.reservations" var="reservation">
+                    <tr>
+                        <td><s:property value="#reservation.hotelName"/></td>
+                        <td><s:property value="#reservation.room"/></td>
+                        <td><s:property value="#reservation.time"/></td>
+                        <td><s:property value="#reservation.startDay"/></td>
+                        <td><input type="checkbox" name="checkinList" value=${reservation.id}></td>
+                    </tr>
+                    </s:iterator>
+                    </tbody>
+                </table>
+                <input class="btn btn-default pull-right" type="submit" value="入住">
             </s:form>
-        </div>
-        <div class="tab-pane fade" id="plan">
-            <s:form action="release_plan" method="POST">
-                <div class="form-group">
+            <br>
+            <br>
+            <div>
+            <s:form action="checkinByHand" method="POST">
+                <div class="form-group col-md-6">
                     <label>房间号:</label>
                     <input class="form-control" name="room">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
+                    <label>入住人数:</label>
+                    <input class="form-control" name="pNum">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>人员名单:</label>
+                    <input class="form-control" name="names">
+                </div>
+                <input class="btn btn-default pull-right" type="submit" value="入住">
+            </s:form>
+            </div>
+
+            <br>
+            <br>
+            <div>
+                <s:form action="checkout" method="POST">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>客房号</th>
+                            <th>入住时间</th>
+                            <th>客人名</th>
+                            <th>退房</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <s:iterator value="#request.rooms" var="room">
+                            <tr>
+                                <td><s:property value="#room.room" /></td>
+                                <td><s:property value="#room.date" /></td>
+                                <td><s:property value="#room.names" /></td>
+                                <td><input type="checkbox" name="checkoutList" value=${room.id}> </td>
+                            </tr>
+                        </s:iterator>
+                        </tbody>
+                    </table>
+                    <input class="btn btn-default pull-right" type="submit" value="退房">
+                </s:form>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="plan">
+            <s:form action="release_plan" method="POST">
+                <div class="form-group col-md-6">
+                    <label>房间号:</label>
+                    <input class="form-control" name="room">
+                </div>
+                <div class="form-group col-md-6">
                     <label>开始日:</label>
                     <input class="form-control" name="startDay">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>结束日:</label>
                     <input class="form-control" name="endDay">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label>价格:</label>
                     <input class="form-control" name="price">
                 </div>

@@ -39,6 +39,7 @@
                 <value>edu.nju.hostelworld.model.CustomerInfoEntity</value>
                 <value>edu.nju.hostelworld.model.HotelInfoEntity</value>
                 <value>edu.nju.hostelworld.model.ReservationEntity</value>
+                <value>edu.nju.hostelworld.model.FinanceRecordEntity</value>
             </list>
         </property>
         <property name="mappingLocations">
@@ -52,6 +53,8 @@
                 <value>classpath:edu/nju/hostelworld/model/CustomerInfoEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/HotelInfoEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/ReservationEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/FinanceRecordEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/CheckinEntity.hbm.xml</value>
             </list>
         </property>
     </bean>

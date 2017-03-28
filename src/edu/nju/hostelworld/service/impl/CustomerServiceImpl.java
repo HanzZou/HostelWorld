@@ -2,9 +2,8 @@ package edu.nju.hostelworld.service.impl;
 
 import edu.nju.hostelworld.dao.inf.CustomerDao;
 import edu.nju.hostelworld.dao.inf.HotelDao;
-import edu.nju.hostelworld.model.CustomerInfoEntity;
-import edu.nju.hostelworld.model.PlanEntity;
-import edu.nju.hostelworld.model.ReservationEntity;
+import edu.nju.hostelworld.dao.inf.ManagerDao;
+import edu.nju.hostelworld.model.*;
 import edu.nju.hostelworld.service.inf.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,12 +48,21 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<ReservationEntity> getReservations(String id) {
+    public List<Reservation> getReservations(String id) {
         List<ReservationEntity> list = customerDao.getReservations();
-        List<ReservationEntity> result = new ArrayList<>();
+        List<Reservation> result = new ArrayList<>();
         for (ReservationEntity reservationEntity:list) {
-            if (reservationEntity.getMemberId().equals(id))
-                result.add(reservationEntity);
+            if (reservationEntity.getMemberId().equals(id)&&reservationEntity.getIsCanceled()==(byte)0) {
+                Reservation reservation = new Reservation();
+                reservation.setId(reservationEntity.getId());
+                reservation.setTime(reservationEntity.getTime());
+                PlanEntity planEntity = customerDao.getPlanByID(reservationEntity.getPlanId());
+                reservation.setHotelName(hotelDao.getHotelByID(planEntity.getHotelId()).getName());
+                reservation.setStartDay(planEntity.getStartDay());
+                reservation.setEndDay(planEntity.getEndDay());
+                reservation.setRoom(planEntity.getRoom());
+                result.add(reservation);
+            }
         }
         return result;
     }
@@ -62,5 +70,52 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void modifyInfo(CustomerInfoEntity customerInfoEntity) {
         customerDao.modify(customerInfoEntity);
+    }
+
+    @Override
+    public void unlock(String id) {
+        customerDao.unlock(id);
+    }
+
+    @Override
+    public CustomerEntity getCustomerByID(String id) {
+        return customerDao.getCustomerByID(id);
+    }
+
+    @Override
+    public CustomerEntity cancelVIP(String id) {
+        return customerDao.cancelVIP(id);
+    }
+
+    @Override
+    public void cancelReservation(String id) {
+        ReservationEntity reservationEntity = customerDao.cancelReservation(id);
+        customerDao.freePlan(reservationEntity.getPlanId());
+    }
+
+    @Override
+    public List<CheckinEntity> getCheckinRecord(String id) {
+        List<CheckinEntity> list = customerDao.getCheckinRecord();
+        List<CheckinEntity> result = new ArrayList<>();
+        for (CheckinEntity checkinEntity:list) {
+            if (checkinEntity.getMember().equals(id)) {
+                checkinEntity.setHotelId(hotelDao.getHotelByID(checkinEntity.getHotelId()).getName());
+                result.add(checkinEntity);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<FinanceRecordEntity> getFinance(String id) {
+        List<FinanceRecordEntity> list = customerDao.getFinance();
+        List<FinanceRecordEntity> result = new ArrayList<>();
+        for (FinanceRecordEntity financeRecordEntity : list) {
+            if (!financeRecordEntity.getMemberId().equals(id))
+                continue;
+            financeRecordEntity.setHotelId(hotelDao.getHotelByID(financeRecordEntity.getHotelId()).getName());
+            result.add(financeRecordEntity);
+        }
+        return result;
     }
 }
