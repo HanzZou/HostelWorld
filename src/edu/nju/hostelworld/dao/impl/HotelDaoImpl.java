@@ -85,4 +85,19 @@ public class HotelDaoImpl implements HotelDao {
         baseDao.update(checkinEntity);
     }
 
+    @Override
+    public List<CheckinEntity> getCheckinRecord() {
+        return baseDao.getAllList(CheckinEntity.class);
+    }
+
+    @Override
+    public void saveFinanceRecord(FinanceRecordEntity financeRecordEntity) {
+        baseDao.save(financeRecordEntity);
+    }
+
+    @Override
+    public List<FinanceRecordEntity> getFinance() {
+        return baseDao.getAllList(FinanceRecordEntity.class);
+    }
+
 }

@@ -42,7 +42,7 @@ public class HotelServiceImpl implements HotelService {
         List<Reservation> result = new ArrayList<>();
         for (ReservationEntity reservationEntity:list) {
             PlanEntity planEntity = customerDao.getPlanByID(reservationEntity.getPlanId());
-            if (!planEntity.getHotelId().equals(id)&&reservationEntity.getIsFinished()==(byte)0)
+            if (!planEntity.getHotelId().equals(id)||reservationEntity.getIsFinished()==(byte)1||reservationEntity.getIsCanceled()==(byte)1)
                 continue;
             Reservation reservation = new Reservation();
             reservation.setRoom(planEntity.getRoom());
@@ -60,15 +60,27 @@ public class HotelServiceImpl implements HotelService {
     public void checkin(String id) {
         ReservationEntity reservationEntity = hotelDao.checkin(id);
         CheckinEntity checkinEntity = new CheckinEntity();
-        checkinEntity.setHotelId(customerDao.getPlanByID(reservationEntity.getPlanId()).getHotelId());
+        PlanEntity planEntity = customerDao.getPlanByID(reservationEntity.getPlanId());
+        checkinEntity.setHotelId(planEntity.getHotelId());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        checkinEntity.setDate(Date.valueOf(sdf.format(new java.util.Date())));
+        Date date = Date.valueOf(sdf.format(new java.util.Date()));
+        checkinEntity.setDate(date);
         checkinEntity.setpNum(1);
+        checkinEntity.setLeaveDate(date);
+        checkinEntity.setRoom(planEntity.getRoom());
         checkinEntity.setPayCard((byte)1);
         checkinEntity.setCheckout((byte)0);
         checkinEntity.setMember(reservationEntity.getMemberId());
         checkinEntity.setNames(customerDao.getCustomerByID(reservationEntity.getMemberId()).getName());
         hotelDao.saveCheckInRecord(checkinEntity);
+
+        FinanceRecordEntity financeRecordEntity = new FinanceRecordEntity();
+        financeRecordEntity.setIsSettled((byte)0);
+        financeRecordEntity.setHotelId(planEntity.getHotelId());
+        financeRecordEntity.setMemberId(reservationEntity.getMemberId());
+        financeRecordEntity.setPrice(planEntity.getPrice());
+        financeRecordEntity.setTime(Date.valueOf(sdf.format(new java.util.Date())));
+        hotelDao.saveFinanceRecord(financeRecordEntity);
     }
 
     @Override
@@ -83,5 +95,40 @@ public class HotelServiceImpl implements HotelService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         checkinEntity.setLeaveDate(Date.valueOf(simpleDateFormat.format(new java.util.Date())));
         hotelDao.checkout(checkinEntity);
+    }
+
+    @Override
+    public List<CheckinEntity> getCheckinRecords(String id) {
+        List<CheckinEntity> list = hotelDao.getCheckinRecord();
+        List<CheckinEntity> result = new ArrayList<>();
+        for (CheckinEntity checkinEntity:list) {
+            if (checkinEntity.getHotelId().equals(id)&&checkinEntity.getCheckout()==(byte)0) {
+                result.add(checkinEntity);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<CheckinEntity> getCheckins(String id) {
+        List<CheckinEntity> list = hotelDao.getCheckinRecord();
+        List<CheckinEntity> result = new ArrayList<>();
+        for (CheckinEntity checkinEntity:list) {
+            if (checkinEntity.getHotelId().equals(id)&&checkinEntity.getCheckout()==(byte)1) {
+                result.add(checkinEntity);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<FinanceRecordEntity> getFinance(String id) {
+        List<FinanceRecordEntity> list = hotelDao.getFinance();
+        List<FinanceRecordEntity> result = new ArrayList<>();
+        for (FinanceRecordEntity financeRecordEntity : list) {
+            if (financeRecordEntity.getHotelId().equals(id))
+                result.add(financeRecordEntity);
+        }
+        return result;
     }
 }

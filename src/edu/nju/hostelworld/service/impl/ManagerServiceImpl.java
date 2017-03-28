@@ -100,4 +100,14 @@ public class ManagerServiceImpl implements ManagerService {
         return managerDao.getCheckinReport();
     }
 
+    @Override
+    public void settle() {
+        List<FinanceRecordEntity> list = managerDao.getFinance();
+        for (FinanceRecordEntity financeRecordEntity:list) {
+            financeRecordEntity.setIsSettled((byte)1);
+            managerDao.settleFinance(financeRecordEntity);
+            managerDao.addMoney(financeRecordEntity.getHotelId(), financeRecordEntity.getPrice());
+        }
+    }
+
 }

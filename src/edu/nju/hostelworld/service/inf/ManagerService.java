@@ -25,4 +25,5 @@ public interface ManagerService {
 
     List<CheckinEntity> getCheckinReport();
 
+    void settle();
 }

@@ -36,6 +36,11 @@ public class ReleasePlanAction extends ActionSupport implements ModelDriven<Plan
         plan.setHotelId(((HotelEntity)session.get("hotel")).getId());
         hotelService.releasePlan(plan);
 
+        HotelEntity hotel = (HotelEntity) ActionContext.getContext().getSession().get("hotel");
+
+        Map request = (Map) ActionContext.getContext().get("request");
+        request.put("reservations", hotelService.getReservations(hotel.getId()));
+        request.put("rooms", hotelService.getCheckinRecords(hotel.getId()));
         return "SUCCESS";
     }
 

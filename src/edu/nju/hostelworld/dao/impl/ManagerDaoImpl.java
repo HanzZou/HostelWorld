@@ -2,10 +2,7 @@ package edu.nju.hostelworld.dao.impl;
 
 import edu.nju.hostelworld.dao.inf.BaseDao;
 import edu.nju.hostelworld.dao.inf.ManagerDao;
-import edu.nju.hostelworld.model.CheckinEntity;
-import edu.nju.hostelworld.model.CustomerInfoEntity;
-import edu.nju.hostelworld.model.HotelEntity;
-import edu.nju.hostelworld.model.HotelInfoEntity;
+import edu.nju.hostelworld.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -58,5 +55,22 @@ public class ManagerDaoImpl implements ManagerDao {
     @Override
     public List<CheckinEntity> getCheckinReport() {
         return baseDao.getAllList(CheckinEntity.class);
+    }
+
+    @Override
+    public List<FinanceRecordEntity> getFinance() {
+        return baseDao.getAllList(FinanceRecordEntity.class);
+    }
+
+    @Override
+    public void settleFinance(FinanceRecordEntity financeRecordEntity) {
+        baseDao.update(financeRecordEntity);
+    }
+
+    @Override
+    public void addMoney(String hotelId, int price) {
+        CardEntity cardEntity = (CardEntity) baseDao.load(CardEntity.class, ((HotelEntity)baseDao.load(HotelEntity.class, hotelId)).getCardId());
+        cardEntity.setBalance(cardEntity.getBalance()+price);
+        baseDao.update(cardEntity);
     }
 }

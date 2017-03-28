@@ -66,6 +66,10 @@
         <action name="checkout" class="checkout">
             <result name="success">/view/hotel/hotel_home.jsp</result>
         </action>
+
+        <action name="settle" class="settle">
+            <result name="success">/view/manager/manager_home.jsp</result>
+        </action>
     </package>
     
 </struts>

@@ -113,6 +113,14 @@
                 <input class="btn btn-default pull-right" type="submit" value="批准">
             </s:form>
         </div>
+
+        <div class="tab-pane fade" id="settle">
+            <input class="btn btn-default" value="结算" onclick="window.location.href='settle'">
+        </div>
+
+        <div class="tab-pane fade" id="check">
+
+        </div>
     </div>
 
 </body>

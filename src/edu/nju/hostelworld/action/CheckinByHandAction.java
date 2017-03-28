@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 /**
  * Created by Hanz on 2017/3/28.
@@ -36,10 +37,17 @@ public class CheckinByHandAction extends ActionSupport implements ModelDriven<Ch
         checkinEntity.setMember("0000000");
         checkinEntity.setPayCard((byte)0);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        checkinEntity.setDate(Date.valueOf(simpleDateFormat.format(new java.util.Date())));
-        checkinEntity.setLeaveDate(Date.valueOf(simpleDateFormat.format(new java.util.Date())));
+        Date date = Date.valueOf(simpleDateFormat.format(new java.util.Date()));
+        checkinEntity.setDate(date);
+        checkinEntity.setLeaveDate(date);
         checkinEntity.setCheckout((byte)0);
         hotelService.checkinByHand(checkinEntity);
+
+        HotelEntity hotel = (HotelEntity) ActionContext.getContext().getSession().get("hotel");
+
+        Map request = (Map) ActionContext.getContext().get("request");
+        request.put("reservations", hotelService.getReservations(hotel.getId()));
+        request.put("rooms", hotelService.getCheckinRecords(hotel.getId()));
         return "success";
     }
 }

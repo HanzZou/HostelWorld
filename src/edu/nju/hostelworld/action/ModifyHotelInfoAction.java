@@ -33,6 +33,14 @@ public class ModifyHotelInfoAction implements ModelDriven<HotelInfoEntity> {
         String hotelId = ((HotelEntity)session.get("hotel")).getId();
         hotelInfoEntity.setHotelId(hotelId);
         hotelService.modifyInfo(hotelInfoEntity);
+
+        HotelEntity hotel = (HotelEntity) ActionContext.getContext().getSession().get("hotel");
+
+        Map request = (Map) ActionContext.getContext().get("request");
+        request.put("reservations", hotelService.getReservations(hotel.getId()));
+        request.put("rooms", hotelService.getCheckinRecords(hotel.getId()));
+        request.put("checkins", hotelService.getCheckins(hotel.getId()));
+        request.put("finance", hotelService.getFinance(hotel.getId()));
         return "success";
     }
 }

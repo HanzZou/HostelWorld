@@ -40,6 +40,7 @@
     </div>
     <div id="myContent" class="tab-content">
         <div class="tab-pane fade in active" id="registration">
+            <h1>入店登记</h1>
             <s:form action="checkin" method="POST">
                 <table class="table">
                     <thead>
@@ -66,7 +67,7 @@
                 <input class="btn btn-default pull-right" type="submit" value="入住">
             </s:form>
             <br>
-            <br>
+            <h1>手动登记</h1>
             <div>
             <s:form action="checkinByHand" method="POST">
                 <div class="form-group col-md-6">
@@ -81,12 +82,16 @@
                     <label>人员名单:</label>
                     <input class="form-control" name="names">
                 </div>
+                <div class="form-group col-md-6">
+                    <label>付费:</label>
+                    <input class="form-control" name="price">
+                </div>
                 <input class="btn btn-default pull-right" type="submit" value="入住">
             </s:form>
             </div>
 
             <br>
-            <br>
+            <h1>离店登记</h1>
             <div>
                 <s:form action="checkout" method="POST">
                     <table class="table">
@@ -99,12 +104,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <s:iterator value="#request.rooms" var="room">
+                        <s:iterator value="#request.rooms" var="croom">
                             <tr>
-                                <td><s:property value="#room.room" /></td>
-                                <td><s:property value="#room.date" /></td>
-                                <td><s:property value="#room.names" /></td>
-                                <td><input type="checkbox" name="checkoutList" value=${room.id}> </td>
+                                <td><s:property value="#croom.room" /></td>
+                                <td><s:property value="#croom.date" /></td>
+                                <td><s:property value="#croom.names" /></td>
+                                <td><input type="checkbox" name="checkoutList" value=${croom.id}> </td>
                             </tr>
                         </s:iterator>
                         </tbody>
@@ -135,9 +140,54 @@
                 <input class="btn btn-default col-md-2" type="submit" value="创建计划"/>
             </s:form>
         </div>
-        <div class="tab-pane fade" id="statistical">
 
+        <div class="tab-pane fade" id="statistical">
+            <h1>入住记录</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>入住时间</th>
+                    <th>离店时间</th>
+                    <th>顾客</th>
+                    <th>房间号</th>
+                </tr>
+                </thead>
+                <tbody>
+                <s:iterator value="#request.checkins" var="c">
+                    <tr>
+                        <td><s:property value="#c.date"/></td>
+                        <td><s:property value="#c.leaveDate"/> </td>
+                        <td><s:property value="#c.names"/> </td>
+                        <td><s:property value="#c.room"/> </td>
+                    </tr>
+                </s:iterator>
+                </tbody>
+            </table>
+
+            <h1>财务记录</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>客户ID</th>
+                    <th>金额</th>
+                    <th>结算情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <s:iterator value="#request.finance" var="record">
+                    <tr>
+                        <td><s:property value="#record.time"/></td>
+                        <td><s:property value="#record.memberId"/></td>
+                        <td><s:property value="#record.price"/></td>
+                        <td><s:if test="#record.isSettled=='0'.toString()">未结算</s:if><s:else>已结算</s:else></td>
+                    </tr>
+                </s:iterator>
+                </tbody>
+
+            </table>
         </div>
+
         <div class="tab-pane fade" id="information">
             <s:form action="modify_hotel_info" method="post">
                 <div class="form-group col-md-6">

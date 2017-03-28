@@ -28,4 +28,10 @@ public interface HotelDao {
     CheckinEntity getCheckinRecordByID(String id);
 
     void checkout(CheckinEntity checkinEntity);
+
+    List<CheckinEntity> getCheckinRecord();
+
+    void saveFinanceRecord(FinanceRecordEntity financeRecordEntity);
+
+    List<FinanceRecordEntity> getFinance();
 }

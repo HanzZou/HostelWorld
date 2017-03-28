@@ -1,9 +1,6 @@
 package edu.nju.hostelworld.service.inf;
 
-import edu.nju.hostelworld.model.CheckinEntity;
-import edu.nju.hostelworld.model.HotelInfoEntity;
-import edu.nju.hostelworld.model.PlanEntity;
-import edu.nju.hostelworld.model.Reservation;
+import edu.nju.hostelworld.model.*;
 
 import java.util.List;
 
@@ -24,4 +21,10 @@ public interface HotelService {
     void checkinByHand(CheckinEntity checkinEntity);
 
     void checkout(String id);
+
+    List<CheckinEntity> getCheckinRecords(String id);
+
+    List<CheckinEntity> getCheckins(String id);
+
+    List<FinanceRecordEntity> getFinance(String id);
 }
