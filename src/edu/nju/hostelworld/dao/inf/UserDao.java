@@ -20,4 +20,5 @@ public interface UserDao {
 
     HotelEntity registerHotel(HotelEntity hotel);
 
+    void saveCustomer(CustomerEntity getCustomer);
 }

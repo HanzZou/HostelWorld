@@ -14,12 +14,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body class="col-md-8 center">
+<body>
+<div class="col-md-8" style="float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;">
+    <div class="col-md-4">
     欢迎使用, ${sessionScope.get("manager").getName()}
-    <br/>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
     <s:form action="user_logout" method="POST">
-        <input class="btn btn-default col-md-2" type="submit" value="注销">
+        <input class="btn btn-default col-md-4" type="submit" value="注销">
     </s:form>
+    </div>
 
     <br/>
     <ul class="nav nav-tabs" id="managerContent">
@@ -31,7 +39,7 @@
     <div id="myContent" class="tab-content">
         <div class="tab-pane fade in active" id="examination">
             <s:form action="approve" method="POST">
-            开店申请:
+            <h3>开店申请:</h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -46,18 +54,19 @@
                 <tbody>
                     <s:iterator value="#request.hotelToOpen" var="hotel">
                         <tr>
-                            <th><s:property value="#hotel.id"/></th>
-                            <th><s:property value="#hotel.name"/></th>
-                            <th><s:property value="#hotel.address"/></th>
-                            <th><s:property value="#hotel.telephone"/></th>
-                            <th><s:property value="#hotel.cardId"/></th>
-                            <th><input type="checkbox" name="hotelToOpenList" value=${hotel.id}></th>
+                            <td><s:property value="#hotel.id"/></td>
+                            <td><s:property value="#hotel.name"/></td>
+                            <td><s:property value="#hotel.address"/></td>
+                            <td><s:property value="#hotel.telephone"/></td>
+                            <td><s:property value="#hotel.cardId"/></td>
+                            <td><input type="checkbox" name="hotelToOpenList" value=${hotel.id}></td>
                         </tr>
                     </s:iterator>
                 </tbody>
             </table>
             <br/>
-            客栈信息修改:
+
+            <h3>客栈信息修改:</h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -72,18 +81,19 @@
                 <tbody>
                     <s:iterator value="#request.hotelInfo" var="info">
                         <tr>
-                            <th><s:property value="#info.id"/></th>
-                            <th><s:property value="#info.name"/></th>
-                            <th><s:property value="#info.address"/></th>
-                            <th><s:property value="#info.telephone"/></th>
-                            <th><s:property value="#info.cardId"/></th>
-                            <th><input type="checkbox" name="hotelInfoList" value=${info.id}></th>
+                            <td><s:property value="#info.id"/></td>
+                            <td><s:property value="#info.name"/></td>
+                            <td><s:property value="#info.address"/></td>
+                            <td><s:property value="#info.telephone"/></td>
+                            <td><s:property value="#info.cardId"/></td>
+                            <td><input type="checkbox" name="hotelInfoList" value=${info.id}></td>
                         </tr>
                     </s:iterator>
                 </tbody>
             </table>
             <br/>
-            会员信息修改:
+
+            <h3>会员信息修改:</h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -99,13 +109,13 @@
                 <tbody>
                     <s:iterator value="#request.customerInfo" var="info">
                         <tr>
-                            <th><s:property value="#info.id"/></th>
-                            <th><s:property value="#info.name"/></th>
-                            <th><s:property value="#info.telephone"/></th>
-                            <th><s:property value="#info.address"/></th>
-                            <th><s:property value="#info.telephone"/></th>
-                            <th><s:property value="#info.cardId"/></th>
-                            <th><input type="checkbox" name="customerInfoList" value=${info.id}></th>
+                            <td><s:property value="#info.id"/></td>
+                            <td><s:property value="#info.name"/></td>
+                            <td><s:property value="#info.telephone"/></td>
+                            <td><s:property value="#info.address"/></td>
+                            <td><s:property value="#info.telephone"/></td>
+                            <td><s:property value="#info.cardId"/></td>
+                            <td><input type="checkbox" name="customerInfoList" value=${info.id}></td>
                         </tr>
                     </s:iterator>
                 </tbody>
@@ -115,13 +125,83 @@
         </div>
 
         <div class="tab-pane fade" id="settle">
-            <input class="btn btn-default" value="结算" onclick="window.location.href='settle'">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>酒店编号</th>
+                    <th>用户编号</th>
+                    <th>金额</th>
+                    <th>结算状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <s:iterator value="#request.finances" var="fi">
+                    <tr>
+                        <td><s:property value="#fi.time"/></td>
+                        <td><s:property value="#fi.hotelId"/></td>
+                        <td><s:property value="#fi.memberId"/></td>
+                        <td><s:property value="#fi.price"/></td>
+                        <td><s:if test="#fi.isSettled=='0'.toString()">未结算</s:if><s:else>已结算</s:else></td>
+                    </tr>
+                </s:iterator>
+                </tbody>
+            </table>
+            <input class="btn btn-default pull-right" value="结算" onclick="window.location.href='settle'">
         </div>
 
         <div class="tab-pane fade" id="check">
+            <h3>预订记录</h3>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>预订时间</th>
+                        <th>客栈ID</th>
+                        <th>客户ID</th>
+                        <th>入住时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <s:iterator value="#request.reservations" var="reservation">
+                        <tr>
+                            <td><s:property value="#reservation.time"/></td>
+                            <td><s:property value="#reservation.planId"/></td>
+                            <td><s:property value="#reservation.memberId"/></td>
+                            <td><s:property value="#reservation.id"/></td>
+                        </tr>
+                    </s:iterator>
+                    </tbody>
+                </table>
+            </div>
 
+            <h3>入住记录</h3>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>入住时间</th>
+                        <th>酒店ID</th>
+                        <th>顾客ID</th>
+                        <th>房间号</th>
+                        <th>已退房</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <s:iterator value="#request.checkinReport" var="c">
+                        <tr>
+                            <td><s:property value="#c.date"/></td>
+                            <td><s:property value="#c.hotelId"/></td>
+                            <td><s:property value="#c.member"/></td>
+                            <td><s:property value="#c.room"/></td>
+                            <td><s:if test="#c.checkout=='1'.toString()">已退房</s:if><s:else>未退房</s:else></td>
+                        </tr>
+                    </s:iterator>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
+</div>
 </body>
 </html>

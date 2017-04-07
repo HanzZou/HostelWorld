@@ -74,6 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void unlock(String id) {
+        customerDao.payforunlock(id);
         customerDao.unlock(id);
     }
 

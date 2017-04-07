@@ -37,4 +37,6 @@ public interface CustomerDao {
     List<CheckinEntity> getCheckinRecord();
 
     List<FinanceRecordEntity> getFinance();
+
+    void payforunlock(String id);
 }

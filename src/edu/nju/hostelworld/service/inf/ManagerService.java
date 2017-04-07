@@ -26,4 +26,8 @@ public interface ManagerService {
     List<CheckinEntity> getCheckinReport();
 
     void settle();
+
+    List<FinanceRecordEntity> getFinances();
+
+    List<ReservationEntity> getReservations();
 }

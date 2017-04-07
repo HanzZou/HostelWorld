@@ -65,4 +65,9 @@ public class UserDaoImpl implements UserDao {
         return hotel;
     }
 
+    @Override
+    public void saveCustomer(CustomerEntity getCustomer) {
+        baseDao.update(getCustomer);
+    }
+
 }

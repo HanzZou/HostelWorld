@@ -39,6 +39,7 @@ public class ApproveAction extends ActionSupport {
         request.put("hotelInfo", managerService.getHotelInfo());
         request.put("customerInfo", managerService.getCustomerInfo());
         request.put("checkinReport", managerService.getCheckinReport());
+        request.put("finances", managerService.getFinances());
         return "success";
     }
 

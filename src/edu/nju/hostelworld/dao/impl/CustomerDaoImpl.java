@@ -7,6 +7,7 @@ import edu.nju.hostelworld.service.inf.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.smartcardio.Card;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -81,6 +82,8 @@ public class CustomerDaoImpl implements CustomerDao {
     public void unlock(String id) {
         CustomerEntity customerEntity = (CustomerEntity) baseDao.load(CustomerEntity.class, id);
         customerEntity.setIsBlocked((byte)0);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        customerEntity.setBlockedDay(Date.valueOf(simpleDateFormat.format(new java.util.Date())));
         baseDao.update(customerEntity);
     }
 
@@ -120,6 +123,13 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<FinanceRecordEntity> getFinance() {
         return baseDao.getAllList(FinanceRecordEntity.class);
+    }
+
+    @Override
+    public void payforunlock(String id) {
+        CardEntity cardEntity = (CardEntity) baseDao.load(CardEntity.class, ((CustomerEntity)baseDao.load(CustomerEntity.class, id)).getCardId());
+        cardEntity.setBalance(cardEntity.getBalance()-1000);
+        baseDao.update(cardEntity);
     }
 
 }

@@ -48,6 +48,8 @@ public class CheckinByHandAction extends ActionSupport implements ModelDriven<Ch
         Map request = (Map) ActionContext.getContext().get("request");
         request.put("reservations", hotelService.getReservations(hotel.getId()));
         request.put("rooms", hotelService.getCheckinRecords(hotel.getId()));
+        request.put("checkins", hotelService.getCheckins(hotel.getId()));
+        request.put("finance", hotelService.getFinance(hotel.getId()));
         return "success";
     }
 }

@@ -25,7 +25,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <s:form action="user_logout" method="POST">
-                <input class="btn btn-default col-md-2" style="float:right;" type="submit" value="注销">
+                <input class="btn btn-default col-md-4" style="float:right;" type="submit" value="注销">
             </s:form>
         </div>
     </div>
@@ -47,7 +47,7 @@
                     <tr>
                         <th>客人名</th>
                         <th>房间号</th>
-                        <td>预订时间</td>
+                        <th>预订时间</th>
                         <th>入住时间</th>
                         <th>入住</th>
                     </tr>

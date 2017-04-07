@@ -37,6 +37,7 @@ public class ReserveAction extends ActionSupport {
         request.put("plans", customerService.getPlans());
         request.put("reservations", customerService.getReservations(customer.getId()));
         request.put("checkinRecord", customerService.getCheckinRecord(customer.getId()));
+        request.put("finance", customerService.getFinance(customer.getId()));
         return "success";
     }
 

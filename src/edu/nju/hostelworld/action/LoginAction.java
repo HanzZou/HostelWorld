@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import edu.nju.hostelworld.service.inf.LoginService;
 
-import java.util.List;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -65,6 +65,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         request.put("hotelInfo", managerService.getHotelInfo());
         request.put("customerInfo", managerService.getCustomerInfo());
         request.put("checkinReport", managerService.getCheckinReport());
+        request.put("finances", managerService.getFinances());
+        request.put("reservations", managerService.getReservations());
         return "MANAGER";
     }
 

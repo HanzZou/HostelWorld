@@ -74,6 +74,7 @@ public class HotelServiceImpl implements HotelService {
         checkinEntity.setNames(customerDao.getCustomerByID(reservationEntity.getMemberId()).getName());
         hotelDao.saveCheckInRecord(checkinEntity);
 
+        System.out.println(1);
         FinanceRecordEntity financeRecordEntity = new FinanceRecordEntity();
         financeRecordEntity.setIsSettled((byte)0);
         financeRecordEntity.setHotelId(planEntity.getHotelId());

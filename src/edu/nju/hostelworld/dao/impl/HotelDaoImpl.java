@@ -92,6 +92,11 @@ public class HotelDaoImpl implements HotelDao {
 
     @Override
     public void saveFinanceRecord(FinanceRecordEntity financeRecordEntity) {
+        String number = String.valueOf(baseDao.getTotalCount(FinanceRecordEntity.class)+1);
+        for (int i = number.length(); i < 15; i++) {
+            number = "0"+number;
+        }
+        financeRecordEntity.setId(number);
         baseDao.save(financeRecordEntity);
     }
 

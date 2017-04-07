@@ -31,7 +31,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <s:form action="user_logout" method="POST">
-                <input class="btn btn-default col-md-2" style="float:right;" type="submit" value="注销">
+                <input class="btn btn-default col-md-4" style="float:right;" type="submit" value="注销">
             </s:form>
         </div>
     </div>

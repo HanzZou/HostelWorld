@@ -97,6 +97,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public List<CheckinEntity> getCheckinReport() {
+        System.out.println(managerDao.getCheckinReport().size());
         return managerDao.getCheckinReport();
     }
 
@@ -108,6 +109,25 @@ public class ManagerServiceImpl implements ManagerService {
             managerDao.settleFinance(financeRecordEntity);
             managerDao.addMoney(financeRecordEntity.getHotelId(), financeRecordEntity.getPrice());
         }
+    }
+
+    @Override
+    public List<FinanceRecordEntity> getFinances() {
+//        System.out.println(managerDao.getFinance().size());
+        return managerDao.getFinance();
+    }
+
+    @Override
+    public List<ReservationEntity> getReservations() {
+        List<ReservationEntity> list = customerDao.getReservations();
+        List<ReservationEntity> result = new ArrayList<>();
+        for (ReservationEntity reservationEntity:list) {
+            PlanEntity planEntity = customerDao.getPlanByID(reservationEntity.getPlanId());
+            reservationEntity.setId(planEntity.getStartDay().toString());
+            reservationEntity.setPlanId(planEntity.getHotelId());
+            result.add(reservationEntity);
+        }
+        return result;
     }
 
 }
