@@ -30,4 +30,6 @@ public interface ManagerService {
     List<FinanceRecordEntity> getFinances();
 
     List<ReservationEntity> getReservations();
+
+    List<HotelReport> getGoodHotels();
 }

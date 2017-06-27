@@ -117,5 +117,6 @@ CREATE TABLE `finance_record` (
   `member_id` CHAR(7) NOT NULL ,
   `price` INT NOT NULL ,
   `time` DATE NOT NULL ,
-  `is_settled` BOOLEAN
+  `is_settled` BOOLEAN ,
+  `rate` INT 
 );

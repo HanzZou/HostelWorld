@@ -130,4 +130,29 @@ public class ManagerServiceImpl implements ManagerService {
         return result;
     }
 
+    @Override
+    public List<HotelReport> getGoodHotels() {
+        List<HotelEntity> list = hotelDao.getHotelList();
+        List<HotelReport> reportList = new ArrayList<>();
+        for (HotelEntity hotel: list) {
+            int num = 0;
+            int sum = 0;
+            int rates=0;
+            String name = hotelDao.getHotelByID(hotel.getId()).getName();
+            List<FinanceRecordEntity> financeRecordEntities = managerDao.getFinance();
+            for (FinanceRecordEntity record : financeRecordEntities) {
+                if (record.getHotelId().equals(hotel.getId())) {
+                    num++;
+                    sum+=record.getPrice();
+                    rates+=record.getRate();
+                }
+            }
+            if (num == 0)
+                continue;
+            HotelReport report = new HotelReport(name, hotel.getId(), num, (double)rates/num, (double)sum/num);
+            reportList.add(report);
+        }
+        return reportList;
+    }
+
 }

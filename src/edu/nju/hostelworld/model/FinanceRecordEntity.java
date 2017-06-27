@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Hanz on 2017/3/28.
+ * Created by Hanz on 2017/6/27.
  *
  * @author Hanz
  */
 @Entity
-@Table(name = "finance_record", schema = "hostelworld")
+@Table(name = "finance_record", schema = "hostelworld", catalog = "")
 public class FinanceRecordEntity {
     private String id;
     private String hotelId;
@@ -17,6 +17,7 @@ public class FinanceRecordEntity {
     private int price;
     private Date time;
     private Byte isSettled;
+    private Integer rate;
 
     @Id
     @Column(name = "id", nullable = false, length = 15)
@@ -78,6 +79,16 @@ public class FinanceRecordEntity {
         this.isSettled = isSettled;
     }
 
+    @Basic
+    @Column(name = "rate", nullable = true)
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,6 +102,7 @@ public class FinanceRecordEntity {
         if (memberId != null ? !memberId.equals(that.memberId) : that.memberId != null) return false;
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
         if (isSettled != null ? !isSettled.equals(that.isSettled) : that.isSettled != null) return false;
+        if (rate != null ? !rate.equals(that.rate) : that.rate != null) return false;
 
         return true;
     }
@@ -103,6 +115,7 @@ public class FinanceRecordEntity {
         result = 31 * result + price;
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + (isSettled != null ? isSettled.hashCode() : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
         return result;
     }
 }

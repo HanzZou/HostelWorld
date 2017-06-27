@@ -67,6 +67,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginUser>
         request.put("checkinReport", managerService.getCheckinReport());
         request.put("finances", managerService.getFinances());
         request.put("reservations", managerService.getReservations());
+        request.put("goodHotels", managerService.getGoodHotels());
         return "MANAGER";
     }
 

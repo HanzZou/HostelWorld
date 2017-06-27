@@ -55,6 +55,7 @@
                 <value>classpath:edu/nju/hostelworld/model/ReservationEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/FinanceRecordEntity.hbm.xml</value>
                 <value>classpath:edu/nju/hostelworld/model/CheckinEntity.hbm.xml</value>
+                <value>classpath:edu/nju/hostelworld/model/FinanceRecordEntity.hbm.xml</value>
             </list>
         </property>
     </bean>

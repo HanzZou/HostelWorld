@@ -23,5 +23,8 @@
         <property name="isSettled">
             <column name="is_settled" sql-type="tinyint(1)" not-null="true"/>
         </property>
+        <property name="rate">
+            <column name="rate" sql-type="int(11)" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>
